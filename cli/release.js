@@ -3,11 +3,12 @@
  * @date 10/29/16
  */
 var webpack = require("webpack");
-var config = require('../webpack.config');
+var config = require('../webpack.release.config');
 // returns a Compiler instance
 var compiler = webpack(config);
 
 compiler.run(function(err, stats) {
+    
     console.log('release successful');
 });
 // or
