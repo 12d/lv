@@ -1,0 +1,37 @@
+{
+  "name": "standard-html5-boilerplate",
+  "version": "1.0.0",
+  "description": "a new html5 project",
+  "main": "",
+  "scripts": {
+    "start": "node ./cli/server.js",
+    "stop": "killall -9 node",
+    "release": "node ./cli/release.js",
+    "lint": "eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@139.196.199.127:lvlvapp/standard-html5-boilerplate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.18.0",
+    "babel-eslint": "^4.1.3",
+    "babel-loader": "^6.2.7",
+
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "eslint": "^1.10.3",
+    "eslint-plugin-react": "^3.6.2",
+    "react-hot-loader": "^1.3.0",
+
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
+  }
+}

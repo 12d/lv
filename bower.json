@@ -1,0 +1,21 @@
+{
+  "name": "standard-html5-boilerplate",
+  "description": "a new html5 project",
+  "main": "",
+  "authors": [
+    "xuweichen <xuweichen@meitu.io>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "^2.3.2",
+    "alameda": "^1.1.0"
+  }
+}
