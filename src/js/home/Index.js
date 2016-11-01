@@ -8,9 +8,12 @@ import React,{
 
 export default class Index extends Component {
     constructor(){
-        super()
+        super();
     }
     render(){
-        return <h1>Hello Standard React Project!!</h1>
+        require.ensure(['../../css/home.css'],(css)=>{
+            console.log(css)
+        })
+        return <h1>Hello Standard React Project!!!!!</h1>
     }
 }

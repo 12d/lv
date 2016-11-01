@@ -1,9 +1,9 @@
 // main.js
-var React = require('react');
-var ReactDOM = require('react-dom');
-import Index from './home/Index';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import routes from './routes';
 ReactDOM.render(
-    <Index/>,
+    routes,
     document.getElementById('app-container')
 );
 
