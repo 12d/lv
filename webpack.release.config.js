@@ -3,14 +3,20 @@ var webpack = require('webpack');
 
 module.exports = {
     devtool: 'source-map',
-    entry: [
-        './src/js/bootstrap.js'
-    ],
+    // entry: [
+    //     './src/js/bootstrap.js',
+    //     './src/js/bootstrap-seo.js'
+    // ],
+    entry: {
+        client: './src/bootstrap',
+        seo: './src/bootstrap-seo'
+    },
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js',
+        filename:  "[name].entry.js",
         publicPath: '/static/'
     },
+    cache: false,
     plugins: [
         new webpack.DefinePlugin({
             "process.env": {
@@ -25,9 +31,9 @@ module.exports = {
             }
         }),
         //允许错误不打断程序
-        new webpack.NoErrorsPlugin(),
+        // new webpack.NoErrorsPlugin(),
         //把指定文件夹xia的文件复制到指定的目录
-        // new TransferWebpackPlugin([
+        // new TransferWebpaackPlugin([
         //     {from: 'www'}
         // ], path.resolve(__dirname,"src"))
     ],
@@ -36,6 +42,18 @@ module.exports = {
             test: /\.js$/,
             loaders: ['babel'],
             include: path.join(__dirname, 'src')
+        },{
+            test: /\.css$/,
+            exclude: 'node_modules',
+            loader: 'style-loader!css-loader'
+        },{
+            test: /\.png$/,
+            loader: 'url?limit=10000000&mimetype=image/png',
+            include: [process.cwd()],
+        }, {
+            test: /\.jpg$/,
+            loader: 'url?limit=10000000&mimetype=image/jpg',
+            include: [process.cwd()]
         }]
     }
 };

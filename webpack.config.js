@@ -6,7 +6,7 @@ module.exports = {
     entry: [
         'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/only-dev-server',
-        './src/js/bootstrap.js'
+        './src/bootstrap.js'
     ],
     output: {
         path: path.join(__dirname, 'dist'),
@@ -21,6 +21,18 @@ module.exports = {
             test: /\.js$/,
             loaders: ['react-hot','babel'],
             include: path.join(__dirname, 'src')
+        },{
+            test: /\.css$/,
+            exclude: 'node_modules',
+            loader: 'style-loader!css-loader'
+        },{
+            test: /\.png$/,
+            loader: 'url?limit=10000000&mimetype=image/png',
+            include: [process.cwd()],
+        }, {
+            test: /\.jpg$/,
+            loader: 'url?limit=10000000&mimetype=image/jpg',
+            include: [process.cwd()]
         }]
     }
 };

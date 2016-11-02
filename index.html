@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="x-dns-prefetch-control" content="on" />
     <link rel="dns-prefetch" href="//"/>
+    <base href="http://localhost:3000/s"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <!--禁止iPhone自动把数字变成电话号码链接-->
@@ -17,12 +18,23 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href=""/>
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href=""/>
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href=""/>
-    <title>Hello React!</title>
-
+    <title>美途旅旅</title>
+    <link rel="stylesheet" type="text/css" href="/src/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/src/css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="/src/css/order.css"/>
     <!--<script src="src/js/libs/alameda/alameda.js"></script>-->
 </head>
-<body>
-<div id="app-container"></div>
+<body class="mui-fullscreen">
+<div id="app" class="mui-views">
+    <div class="mui-view">
+        <div class="mui-navbar">
+        </div>
+        <div class="mui-pages" id="app-container">
+
+        </div>
+    </div>
+</div>
+
 <script src="/static/bundle.js"></script>
 </body>
 </html>

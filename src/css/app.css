@@ -1,0 +1,26 @@
+/**
+ * GRAY: #777
+ * GREEN: #ECF0F1
+ * RED: #f00
+ * BLACK: #333
+ * BACKGROUND: #797979
+ */
+
+body{background: #ECF0F1;font-size:14px;color:#797979}
+.navbar{background-color:#1DA179; color:white}
+.navbar .mui-title{color:white;font-weight:normal}
+.navbar .mui-icon-left-nav{color:white}
+.mui-views .mui-table-view  .mui-table-view-cell{color:#333}
+
+.app-page-container{margin-top: 44px;}
+.app-icon{height:18px;width:18px;}
+.no-margin-no-radius{border-radius: 0px;margin: 0;}
+.normal-order-list{list-style: none;padding:0}
+.mui-table-view .list-img{width:85px;max-width:85px; height:65px}
+.theme-font{color:#1DA179}
+.tiny-font{font-size: 12px;line-height: 18px;}
+.large-font{font-size: 18px;}
+.normal-font{color:#333!important;}
+.gray-font{color:#777!important;}
+.field-value{color:#777;font-size: 13px}
+.margin-left-10{margin-left:10px}
