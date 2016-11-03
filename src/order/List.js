@@ -22,6 +22,9 @@ export default class Index extends Page {
                 <OrderItem/>
                 <OrderItem/>
                 <OrderItem/>
+                <OrderItem/>
+                <OrderItem/>
+                <OrderItem/>
             </ul>
         )
     }

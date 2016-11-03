@@ -26,12 +26,12 @@ export default class Detail extends Page {
                     <ul className="mui-table-view ">
                         <li className="mui-table-view-cell">
                             <span className="mui-pull-left normal-font">订单编号 201210120120120</span>
-                            <span className="mui-pull-right normal-font">2016-12-09 预定</span>
+                            <span className="mui-pull-right normal-font">2016-12-09 <span className="tiny-font gray-font">预定</span></span>
                         </li>
                         <li className="mui-table-view-cell">
                             <a href="#account" className="mui-navigate-right mui-pull-left">订单总额</a>
                             <div className="mui-pull-right">
-                                <span style={{color:"red",fontSize: 16, marginRight: 10}}>￥4999</span><span className="mui-ellipsis tiny-font gray-font">明细</span>
+                                <span style={{color:"red",fontSize: 16, marginRight: 10}}>￥4999</span><span className="tiny-font theme-font">明细</span>
                             </div>
                         </li>
                         <li className="mui-table-view-cell mui-media">
@@ -51,14 +51,14 @@ export default class Detail extends Page {
                         <div className="mui-card-content">
                             <div className="mui-card-content-inner schedule-container">
                                 <div className="shedule-time">
-                                    <span className="large-font theme-font">12月12日</span>
+                                    <span className="extra-large-font theme-font">12月12日</span>
                                     <span className="tiny-font">周二出发</span>
                                 </div>
                                 <div className="person-text">
                                     2人
                                 </div>
                                 <div className="shedule-time" style={{right:15,textAlign:'right'}}>
-                                    <span className="large-font theme-font">12月25日</span>
+                                    <span className="extra-large-font theme-font">12月25日</span>
                                     <span className="tiny-font">周五返回</span>
                                 </div>
                             </div>

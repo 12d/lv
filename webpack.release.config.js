@@ -1,6 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
-
+var TransferWebpackPlugin = require('transfer-webpack-plugin');
 module.exports = {
     devtool: 'source-map',
     // entry: [
@@ -33,9 +33,9 @@ module.exports = {
         //允许错误不打断程序
         // new webpack.NoErrorsPlugin(),
         //把指定文件夹xia的文件复制到指定的目录
-        // new TransferWebpaackPlugin([
-        //     {from: 'www'}
-        // ], path.resolve(__dirname,"src"))
+        new TransferWebpackPlugin([
+            {from: 'css'}
+        ], path.resolve(__dirname,"dist"))
     ],
     module: {
         loaders: [{

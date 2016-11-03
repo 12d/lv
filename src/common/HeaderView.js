@@ -11,8 +11,8 @@ export default class HeaderView extends Component {
     render(){
         return (
             <header className="mui-bar mui-bar-nav navbar">
-                <div className="mui-action-back mui-icon mui-icon-left-nav"></div>
-                <div className="mui-title">我的旅行线路</div>
+                <div className="mui-action-back mui-icon mui-icon-left-nav" style={{visibility:"hidden"}}></div>
+                <div className="mui-title">美途旅旅</div>
                 <div className="navbar-right"></div>
             </header>
         )
