@@ -28,7 +28,27 @@ function renderFullPage(html, initialState) {
     head.innerHTML=initalHeadHTML+'<script>window.__INITIAL_STATE__ = '+JSON.stringify(initialState)+';</script>';
     return document.documentElement.outerHTML;
 }
-
+//添加MIME类型
+var MIME_TYPE = {
+    "css": "text/css",
+    "gif": "image/gif",
+    "html": "text/html",
+    "ico": "image/x-icon",
+    "jpeg": "image/jpeg",
+    "jpg": "image/jpeg",
+    "js": "text/javascript",
+    "json": "application/json",
+    "pdf": "application/pdf",
+    "png": "image/png",
+    "svg": "image/svg+xml",
+    "swf": "application/x-shockwave-flash",
+    "tiff": "image/tiff",
+    "txt": "text/plain",
+    "wav": "audio/x-wav",
+    "wma": "audio/x-ms-wma",
+    "wmv": "video/x-ms-wmv",
+    "xml": "text/xml"
+};
 app.use(function(req, res){
     match({ routes:global.getSEORoutes(),  location: req.url }, (error, redirectLocation, renderProps) => {
         if (error) {
@@ -58,10 +78,10 @@ app.use(function(req, res){
 
             var realPath = path.join(__dirname,'../dist',pathname);
 
-            // console.log(path,'=============');
-        // console.log(path.exists,'=============');
-            console.log('------read file------',realPath);
-            console.log(__dirname,'__dirname')
+            var ext = path.extname(realPath);
+            ext = ext?ext.slice(1) : 'unknown';
+            var contentType = MIME_TYPE[ext] || "text/plain";
+
             fs.exists(realPath, function (exists) {
 
                 if (!exists) {
@@ -84,7 +104,7 @@ app.use(function(req, res){
 
                         } else {
 
-                            response.writeHead(200, {'Content-Type': 'text/html'});
+                            response.writeHead(200, {'Content-Type': contentType});
 
                             response.write(file, "binary");
 
@@ -100,6 +120,6 @@ app.use(function(req, res){
         }
     })
 })
-app.listen(8888);
-console.log('server starting at 8888')
+app.listen(8080);
+console.log('server starting at 8080')
 
