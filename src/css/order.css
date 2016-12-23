@@ -1,15 +1,12 @@
 .order-status{position: absolute;right:10px;top:10px;text-align: center;}
 .order-status-text{font-size: 12px;margin-top: -4px;}
-.order-list{padding: 10px;margin:0 0 10px 0}
-.normal-order-list>li{padding: 0}
-.order-name{font-size: 16px;color:#34495E;max-height:60px;}
-.order-price{color:red;font-size: 16px;}
-.order-agent{vertical-align: middle;position: relative;top:5px;}
-.order-price-wrap{position: absolute;right: 0px;bottom: 0px;}
-.mui-table-view-cell>a.order-content{white-space: normal;margin: 3px 0px 0px 0px;padding: 10px 0 0 0 }
+
+
+.mui-table-view-cell>a.order-content{white-space: normal;
+    margin: 3px 0 0 0;
+    padding: 10px 0 0 0;}
 /*.mui-table-view{background: transparent}*/
-.order-list-container{background: transparent}
-.order-list:after{display: none}
+
 
 .mui-card{font-size: 14px;}
 .mui-table-view-cell>a.order-content:before,.person-text:after {
@@ -32,3 +29,7 @@
 .shedule-time span.tiny-font{position: relative;top:5px;}
 .person-text{left:120px;right:120px;position: absolute;text-align: center;top:27px;}
 .guider-phone{margin-left: 10px;color:white;background-color: #1DA179;border-radius: 5px;font-size: 18px;}
+.mui-scroll .booking-result {margin-left:0;margin-right:0;border-left:none;border-right:none;}
+.mui-scroll .booking-result .mui-icon{border-radius:35px;background:white;border:1px solid green;margin-right:10px;font-weight:bold;font-size:40px;}
+.mui-scroll .booking-succss {color:green;background:#edfdef}
+.order-list-container .mui-card{border-right:none;border-left:none}

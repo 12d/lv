@@ -8,6 +8,7 @@ global.getSEORoutes=()=>{
         routes
     )
 }
+console.log(global)
 
 
 

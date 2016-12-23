@@ -5,18 +5,30 @@ import React, {
 } from 'react';
 
 
-// import Theme from '../skins/Theme';
-// import {connect} from 'react-redux';
-// import {bindActionCreators} from 'redux';
 import HeaderView from './HeaderView';
+import ActivityIndicator from './ActivityIndicator';
+
+import { browserHistory } from 'react-router';
+
 const NOOP = ()=> {
 }
 class Page extends Component {
-    // mixins: [UBTMixin],
+    static forward(pathname){
+        browserHistory.push(pathname);
+    }
+    static backward(){
+        browserHistory.goBack();
+    }
+    forward(pathname){
+        browserHistory.push(pathname);
+    }
+    backward(){
+        browserHistory.goBack();
+    }
     contextTypes:{
         env: PropTypes.object,
         urlQuery: PropTypes.object
-        }
+    }
 
     /**
      * 获取jsbundle中queryString中的参数
@@ -37,51 +49,47 @@ class Page extends Component {
     getEnv(key:string) {
         return key ? this.context.env[key] : this.context.env;
     }
+    showLoading(container){
 
+    }
     create(content) {
         return (
             <div className="mui-page app-page-container">
-                <HeaderView/>
+                <HeaderView {...this.headerview}/>
                 {content}
+                {
+                    this.state && this.state.isLoading ?
+                        <div className="mui-backdrop">
+                            <ActivityIndicator/>
+                        </div>
+                    :
+                        null
+                }
+
             </div>
         )
     }
+    componentWillMount(){
 
+    }
     componentDidMount() {
+        window.x = this;
         // this.header = this.refs.header;
     }
 
-    forward(component, headerview, passProps) {
-        if (!component.dispatch) {
-            component.dispatch = this.props.reduxStore && this.props.reduxStore.dispatch;
-        }
-        console.log(passProps, 'passProps')
-        this.props.navigator.push({
-            component,
-            headerview: {...component.headerview, ...headerview},
-            passProps: passProps
-        });
-        component.prefetch && component.prefetch(passProps) || false;
-    }
 
-    backward() {
-        this.props.navigator.pop()
-    }
 
-    setLazyState(state, callback) {
-        // console.log('start render')
-        InteractionManager.runAfterInteractions(()=> {
-            // console.log('complete render')
-            this.setState(state, callback)
+    showLoading() {
+        console.log('showLoading')
+        this.setState({
+            isLoading: true
         })
     }
 
-    showLoading() {
-
-    }
-
     hideLoading() {
-
+        this.setState({
+            isLoading: false
+        })
     }
 
     /**
@@ -100,6 +108,7 @@ class Page extends Component {
             }
         )(klass)
     }
+
 }
 
 // export default

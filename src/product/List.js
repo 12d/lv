@@ -1,0 +1,99 @@
+/**
+ * @author xuweichen@meitu.io
+ * @date 12/12/16
+ */
+import React,{
+    Component
+} from 'react';
+
+import ProductItem from './ProductItem';
+import {Model,Page,Prompt,Store,NormalError} from '../common/lv';
+var secureCodeStore = new Store('SECURE_CODE');
+var pageInstance;
+var visitedTagStore = new Store('VISITED_TAG',{},{lifetime: '1D'});
+export default class Index extends Page {
+    headerview = {
+        title: '热门线路推荐',
+        right: [
+            {
+                text: '优惠码',
+                onClick(){
+                    pageInstance.showPromotion();
+                }
+            }
+        ]
+    }
+    constructor(){
+        super();
+        pageInstance = this;
+    }
+    componentWillMount(){
+
+        this.state = {
+            list: []
+        }
+        this.urlQuery = this.props.location.query;
+    }
+    getList(){
+        var list = this.props.location.query.id;
+        Model.post('/sharedline/getlinelist',{
+            travellineidlist: list && list.split(','),
+            pageindex:1,
+            pagesize:20
+        },{
+            useSecureCode: true
+        }).then((rs)=>{
+            // debugger
+            // console.log(rs.Data.Infos.List,'rs.Data.Info.List')
+            this.setState({
+                list: rs.Data.Infos && rs.Data.Infos.List ||[]
+            });
+             this.needShowPromotion() && this.showPromotion();
+        });
+    }
+    needShowPromotion(){
+        return !visitedTagStore.getItem('visited') && !secureCodeStore.getItem()
+    }
+    checkPromotionCode(secureCode){
+        secureCodeStore.setItem({secureCode});
+    }
+    showPromotion(){
+        var self = this;
+
+        Prompt.show({
+            yesLabel:'立即查看',
+            noLabel:'没有优惠码',
+            onYes(e){
+                visitedTagStore.setItem('visited',1);
+                self.checkPromotionCode(e.value);
+                self.getList();
+            },
+            onNo(){
+                visitedTagStore.setItem('visited',1);
+                // console.log('no')
+            },
+            title: '优惠码',
+            message: '输入优惠码, 查看更低价格'
+        })
+    }
+    componentDidMount(){
+        this.getList();
+    }
+    render(){
+        return this.create(
+            this.state.list.length
+                ?
+            <ul className="mui-table-view order-list-container">
+                {
+                    this.state.list.map((data, index)=>{
+                        return (
+                            <ProductItem data={data} key={'pitem'+index}/>
+                        )
+                    })
+                }
+            </ul>
+                :
+            <NormalError msg="暂时没有数据"/>
+        )
+    }
+}

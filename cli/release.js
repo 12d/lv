@@ -8,7 +8,6 @@ var config = require('../webpack.release.config');
 var compiler = webpack(config);
 
 compiler.run(function(err, stats) {
-    console.log(config)
     err && console.log(err);
     console.log('release successful');
 });

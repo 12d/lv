@@ -9,9 +9,9 @@ var express = require('express');
 var React = require('react');
 var ReactRouter = require('react-router');
 var ReactDOM = require('react-dom/server');
-var seo = require('../dist/seo.entry');
+var seo = require('../dist/seo.entry.js');
 var jsdom = require('jsdom');
-var htmlTemplate = fs.readFileSync('../dist/index.html','utf8');
+var htmlTemplate = fs.readFileSync(path.resolve(__dirname,'../dist','index.html'),'utf8');
 var DefaultRoute = ReactRouter.ReactRouter;
 var NotFoundRoute = ReactRouter.NotFoundRoute;
 var Route = ReactRouter.Route;
@@ -49,7 +49,9 @@ var MIME_TYPE = {
     "wmv": "video/x-ms-wmv",
     "xml": "text/xml"
 };
+console.log('x')
 app.use(function(req, res){
+    console.log(global.getSEORoutes,'global.getSEORoutes');
     match({ routes:global.getSEORoutes(),  location: req.url }, (error, redirectLocation, renderProps) => {
         if (error) {
             res.status(500).send(error.message)
@@ -76,7 +78,7 @@ app.use(function(req, res){
             var response = res;
             var pathname = url.parse(request.url).pathname;
 
-            var realPath = path.join(__dirname,'../dist',pathname);
+            var realPath = path.resolve(__dirname,'dist',pathname);
 
             var ext = path.extname(realPath);
             ext = ext?ext.slice(1) : 'unknown';
@@ -120,6 +122,6 @@ app.use(function(req, res){
         }
     })
 })
-app.listen(8080);
-console.log('server starting at 8080')
+app.listen(5678);
+console.log('server starting at 5678')
 

@@ -8,12 +8,21 @@ import React, {
 } from 'react';
 
 export default class HeaderView extends Component {
+    static defaultProps = {
+        right: [],
+        title: '',
+        left: []
+    }
     render(){
         return (
-            <header className="mui-bar mui-bar-nav navbar">
-                <div className="mui-action-back mui-icon mui-icon-left-nav" style={{visibility:"hidden"}}></div>
-                <div className="mui-title">美途旅旅</div>
-                <div className="navbar-right"></div>
+            <header id="header" className="mui-bar mui-bar-nav navbar">
+                <a className="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+                <h1 className="mui-title">{this.props.title}</h1>
+                {
+                    this.props.right.map((btn,index)=>(
+                        <button key={"right-btn"+index} onClick={btn.onClick} className="mui-btn mui-btn-blue mui-btn-link mui-pull-right">{btn.text}</button>
+                    ))
+                }
             </header>
         )
     }

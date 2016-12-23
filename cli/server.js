@@ -6,10 +6,10 @@ new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
     hot: true,
     devServer: {
-        host: '192.168.0.43'
+        host: 'localhost'
     },
     historyApiFallback: true
-}).listen(3000, '192.168.0.43', function (err, result) {
+}).listen(3000, 'localhost', function (err, result) {
     if (err) {
         return console.log(err);
     }

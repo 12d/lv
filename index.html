@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="x-dns-prefetch-control" content="on"/>
     <link rel="dns-prefetch" href="//"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <!--禁止iPhone自动把数字变成电话号码链接-->
     <meta content="telephone=no" name="format-detection"/>
@@ -19,10 +20,13 @@
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href=""/>
     <title>美途旅旅</title>
     <link rel="stylesheet" type="text/css" href="/src/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/src/css/mui-extra.css"/>
     <link rel="stylesheet" type="text/css" href="/src/css/app.css"/>
     <link rel="stylesheet" type="text/css" href="/src/css/order.css"/>
     <link rel="stylesheet" type="text/css" href="/src/css/account.css"/>
-    <!--<script src="src/js/libs/alameda/alameda.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="/src/css/product.css"/>
+    <link rel="stylesheet" type="text/css" href="/src/css/calendar.css"/>
+
 </head>
 <body class="mui-fullscreen">
 <div id="app" class="mui-views">
@@ -34,7 +38,13 @@
         </div>
     </div>
 </div>
-
+<script src="/src/libs/mui/mui.js"></script>
+<script src="http://www.dcloud.io/hellomui/js/mui.view.js"></script>
+<script>
+    mui.init({
+        swipeBack:true //启用右滑关闭功能
+    });
+</script>
 <script src="/static/bundle.js"></script>
 </body>
 </html>

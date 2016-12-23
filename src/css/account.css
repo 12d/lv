@@ -1,8 +1,10 @@
 .login-logo {width:200px;height:200px;overflow: hidden;display: inline;margin: 30px;opacity: 0.9}
 .login-row{padding: 10px 20px;width: 100%;position: relative;min-height: 64px;text-align: left}
-.text-input {border-radius: 2px;border:none;background-color: #D1ECE4;padding: 10px; width: 100%;line-height: 24px;}
+.login-form-container .text-input {border-radius: 2px;border:none;background-color: #D1ECE4;padding: 10px; width: 100%;line-height: 55px;height:55px;}
 .login-btn {border-radius: 2px;border:none;background-color: #e7f0c0; text-align:center; color:#1DA179;font-weight: bold}
 .get-verify-btn {padding:8px 10px;position: absolute;right: 20px;top:15px;opacity: 0.9;color:#1DA179;border:none;}
 .verify-text-input{position:absolute;left:20px;right:130px;width: auto;}
 .login-form-container{position: absolute;left:0;top:0;bottom: 0;right: 0;background: #1DA179;z-index: 99;text-align: center;padding-top: 40px;}
 .verify-text{background:transparent;border:none;padding:0;vertical-align:top;line-height: 24px;}
+.contact-us{color:#c6e2c6!important;position:absolute;bottom:10px; text-align:center;width:100%;}
+.help-phone{color:#c6e2c6!important;}
