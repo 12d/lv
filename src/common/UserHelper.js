@@ -28,6 +28,7 @@ export default class UserHelper {
         return user && user.auth;
     }
     static getUser(){
-        return userStore.getItem().data;
+        var user = userStore.getItem();
+        return user && user.data;
     }
 }

@@ -100,7 +100,7 @@ class Store {
 
         },
         getItem(){
-
+            return null
         }
     })
 }
@@ -171,5 +171,4 @@ class Store {
 //         }
 //     })
 // }
-window.Store = Store;
 export default Store;

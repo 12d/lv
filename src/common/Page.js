@@ -8,22 +8,22 @@ import React, {
 import HeaderView from './HeaderView';
 import ActivityIndicator from './ActivityIndicator';
 
-import { browserHistory } from 'react-router';
-
+import { browserHistory,hashHistory } from 'react-router';
+var history = browserHistory;
 const NOOP = ()=> {
 }
 class Page extends Component {
     static forward(pathname){
-        browserHistory.push(pathname);
+        history.push(pathname);
     }
     static backward(){
-        browserHistory.goBack();
+        history.goBack();
     }
     forward(pathname){
-        browserHistory.push(pathname);
+        history.push(pathname);
     }
     backward(){
-        browserHistory.goBack();
+        history.goBack();
     }
     contextTypes:{
         env: PropTypes.object,
@@ -52,6 +52,12 @@ class Page extends Component {
     showLoading(container){
 
     }
+    getInitialData(){
+        return typeof window=='undefined' ? this.props.location.state : window.__INITIAL_STATE__[0]
+    }
+    // getInitialState(){
+    //     return window.__INITIAL_STATE__;
+    // }
     create(content) {
         return (
             <div className="mui-page app-page-container">
@@ -73,7 +79,7 @@ class Page extends Component {
 
     }
     componentDidMount() {
-        window.x = this;
+
         // this.header = this.refs.header;
     }
 

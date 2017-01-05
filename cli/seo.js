@@ -25,7 +25,7 @@ var initalHeadHTML = head.innerHTML;
 var container  = document.querySelector("#app-container");
 function renderFullPage(html, initialState) {
     container.innerHTML=html;
-    head.innerHTML=initalHeadHTML+'<script>window.__INITIAL_STATE__ = '+JSON.stringify(initialState)+';</script>';
+    head.innerHTML=initalHeadHTML+'<script>window.__INITIAL_STATE__ = '+JSON.stringify(initialState)+';window.__RENDER_AT="server"</script>';
     return document.documentElement.outerHTML;
 }
 //添加MIME类型
@@ -49,37 +49,33 @@ var MIME_TYPE = {
     "wmv": "video/x-ms-wmv",
     "xml": "text/xml"
 };
-console.log('x')
+
 app.use(function(req, res){
-    console.log(global.getSEORoutes,'global.getSEORoutes');
     match({ routes:global.getSEORoutes(),  location: req.url }, (error, redirectLocation, renderProps) => {
         if (error) {
             res.status(500).send(error.message)
         } else if (redirectLocation) {
             res.redirect(302, redirectLocation.pathname + redirectLocation.search)
         } else if (renderProps) {
-            /**
-             * [ 'routes',
-             'params',
-             'location',
-             'components',
-             'router',
-             'matchContext' ]
+            console.log('renderProps.params',JSON.stringify(renderProps.params));
+            // debugger
+            // console.log(renderProps.components[1].prefetch())
+            var coms = renderProps.components.filter(com=>(com && com.prefetch));
+            var promises = coms.map(com=>com.prefetch(renderProps.params,renderProps));
+            Promise.all(promises).then(values=>{
+                // var attrs = Object.assign({data: values}, renderProps);
+                renderProps.location.state = values[0];
+                console.log(renderProps.location.state,'renderProps.location.state')
+                res.status(200).send(renderFullPage(ReactDOM.renderToString(React.createElement(RouterContext,renderProps)), values));
+            }).catch(error=>res.status(500).send(error.message));
+            console.log('waiting for response')
 
-             */
-            // You can also check renderProps.components or renderProps.routes for
-            // your "not found" component or route respectively, and send a 404 as
-            // below, if you're using a catch-all route.
-            // console.log(renderProps.matchContext);
-            // console.log(React.cloneElement(RoutingContext,renderProps))
-            res.status(200).send(renderFullPage(ReactDOM.renderToString(React.createElement(RouterContext,renderProps)), renderProps.params));
         } else {
             var request = req;
             var response = res;
             var pathname = url.parse(request.url).pathname;
-
-            var realPath = path.resolve(__dirname,'dist',pathname);
-
+            var realPath = path.join(process.cwd(),'dist',pathname);
+            console.log('request: '+ realPath);
             var ext = path.extname(realPath);
             ext = ext?ext.slice(1) : 'unknown';
             var contentType = MIME_TYPE[ext] || "text/plain";
@@ -87,8 +83,8 @@ app.use(function(req, res){
             fs.exists(realPath, function (exists) {
 
                 if (!exists) {
-
-                    response.writeHead(404, {'Content-Type': 'text/plain'});
+                    console.log("This request URL " + pathname + " was not found on this server.")
+                    response.writeHead(404, {'Content-Type': 'text/plainx'});
 
                     response.write("This request URL " + pathname + " was not found on this server.");
 
@@ -124,4 +120,3 @@ app.use(function(req, res){
 })
 app.listen(5678);
 console.log('server starting at 5678')
-

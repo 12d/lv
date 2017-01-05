@@ -12,6 +12,17 @@ var secureCodeStore = new Store('SECURE_CODE');
 var pageInstance;
 var visitedTagStore = new Store('VISITED_TAG',{},{lifetime: '1D'});
 export default class Index extends Page {
+    static prefetch(params, props){
+        var list = props.location.query.id;
+        console.log(Model)
+        return Model.post('/sharedline/getlinelist',{
+            travellineidlist: list && list.split(','),
+            pageindex:1,
+            pagesize:20
+        },{
+            useSecureCode: true
+        })
+    }
     headerview = {
         title: '热门线路推荐',
         right: [
@@ -30,7 +41,7 @@ export default class Index extends Page {
     componentWillMount(){
 
         this.state = {
-            list: []
+            data: this.getInitialData()
         }
         this.urlQuery = this.props.location.query;
     }
@@ -46,7 +57,7 @@ export default class Index extends Page {
             // debugger
             // console.log(rs.Data.Infos.List,'rs.Data.Info.List')
             this.setState({
-                list: rs.Data.Infos && rs.Data.Infos.List ||[]
+                data: rs
             });
              this.needShowPromotion() && this.showPromotion();
         });
@@ -77,17 +88,18 @@ export default class Index extends Page {
         })
     }
     componentDidMount(){
-        this.getList();
+        // this.getList();
     }
     render(){
+        var data = this.state.data && this.state.data.Data.Infos;
         return this.create(
-            this.state.list.length
+            data && data.List.length
                 ?
             <ul className="mui-table-view order-list-container">
                 {
-                    this.state.list.map((data, index)=>{
+                    this.state.data.Data.Infos.List.map((itemData, index)=>{
                         return (
-                            <ProductItem data={data} key={'pitem'+index}/>
+                            <ProductItem data={itemData} key={'pitem'+index}/>
                         )
                     })
                 }

@@ -8,4 +8,7 @@ export default class Util {
     static guid(){
         return (+new Date)+(this.__guid++)
     }
+    static runAt(){
+        return typeof window==='undefined' ? 'server' : 'client'
+    }
 }

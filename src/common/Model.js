@@ -11,8 +11,9 @@
 // import Config from '../config/dev';
 import Config from '../Config';
 import Spy from './Spy';
+import Store from './Store';
 import UserHelper from './UserHelper';
-// var fetch = typeof window!=='undefined' ? fetch : require('node-fetch');
+var fetch = require('node-fetch');
 let userData = UserHelper.getUser();
 let secureCodeStore = new Store('SECURE_CODE');
 class Model {

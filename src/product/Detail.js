@@ -3,6 +3,7 @@
  * @date 10/28/16
  */
 /*http://www.dcloud.io/hellomui/examples/nav_transparent.html*/
+
 import React,{
     Component
 } from 'react';
@@ -25,6 +26,14 @@ export default class Detail extends Page {
             }
         ]
     }
+    static prefetch(params){
+        return ;
+        return Model.post('/sharedline/getlinedetail', {
+            lineid: params.id
+        },{
+            useSecureCode: true
+        })
+    }
     constructor(){
         super();
         pageInstance = this;
@@ -44,7 +53,7 @@ export default class Detail extends Page {
             onYes(e){
                 visitedTagStore.setItem('visited',1);
                 self.checkPromotionCode(e.value);
-                self.getList();
+                self.getDetail();
             },
             onNo(){
                 visitedTagStore.setItem('visited',1);
@@ -54,22 +63,22 @@ export default class Detail extends Page {
             message: '输入优惠码, 查看更低价格'
         })
     }
-    componentWillMount(){
-        this.state = {
-            data: {}
-        }
-        // priceCalendarData.clear();
+    componentDidMount(){
         this.getDetail();
+    }
+    componentWillMount(){
+        console.log('will amount')
+        // var initial = this.getInitialState();
+
+        this.state = {
+            data: this.getInitialData()
+        }
 
     }
     getDetail(){
-        Model.post('/sharedline/getlinedetail', {
-            lineid: this.props.params.id
-        },{
-            useSecureCode: true
-        }).then((rs)=>{
+        Detail.prefetch(this.props.params).then((rs)=>{
             this.setState({
-                data: rs.Data.Infos || {},
+                data: rs,
                 selectedDay: priceCalendarData.getItem('selectedDay')
             });
             this.needShowPromotion() && this.showPromotion();
@@ -80,10 +89,13 @@ export default class Detail extends Page {
         });
     }
     render(){
-        var data = this.state.data||{},
-            summary = data && data.Summary && JSON.parse(data.Summary);
+        console.log('render')
+        var rawData = this.state.data||{},
+            data = rawData.Data,
+            summary = data && (typeof data.Summary==='string' ? JSON.parse(data.Summary) : data.Summary);
 
-        data.Summary = summary||{};
+        summary && (data.Summary = summary||{});
+        data = data && data.Infos || {};
 
         return this.create(
 
@@ -170,13 +182,13 @@ export default class Detail extends Page {
                     }
                 </div>
                 {
-                    this.state.data ?
+                    data ?
                         <div className="mui-bar-footer action-btns">
                             <button className="mui-btn mui-btn-default mui-col-xs-4"><span className="mui-icon mui-icon-phone"></span>联系客服</button>
                             <Link to={{
-                                pathname:"/product/booking/"+this.state.data.LineID,
+                                pathname:"/product/booking/"+data.LineID,
                                 state: {
-                                    data: this.state.data,
+                                    data: data,
                                     selectedDay: this.state.selectedDay
                                 }
                             }} className="mui-btn mui-btn-warning mui-col-xs-8">立即预约</Link>
