@@ -27,7 +27,6 @@ export default class Detail extends Page {
         ]
     }
     static prefetch(params){
-        return ;
         return Model.post('/sharedline/getlinedetail', {
             lineid: params.id
         },{

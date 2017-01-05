@@ -13,8 +13,8 @@ var pageInstance;
 var visitedTagStore = new Store('VISITED_TAG',{},{lifetime: '1D'});
 export default class Index extends Page {
     static prefetch(params, props){
+
         var list = props.location.query.id;
-        console.log(Model)
         return Model.post('/sharedline/getlinelist',{
             travellineidlist: list && list.split(','),
             pageindex:1,
@@ -46,21 +46,24 @@ export default class Index extends Page {
         this.urlQuery = this.props.location.query;
     }
     getList(){
-        var list = this.props.location.query.id;
-        Model.post('/sharedline/getlinelist',{
-            travellineidlist: list && list.split(','),
-            pageindex:1,
-            pagesize:20
-        },{
-            useSecureCode: true
-        }).then((rs)=>{
-            // debugger
-            // console.log(rs.Data.Infos.List,'rs.Data.Info.List')
-            this.setState({
-                data: rs
-            });
-             this.needShowPromotion() && this.showPromotion();
-        });
+        // var list = this.props.location.query.id;
+        // Model.post('/sharedline/getlinelist',{
+        //     travellineidlist: list && list.split(','),
+        //     pageindex:1,
+        //     pagesize:20
+        // },{
+        //     useSecureCode: true
+        // }).then((rs)=>{
+        //     // debugger
+        //     // console.log(rs.Data.Infos.List,'rs.Data.Info.List')
+        //     this.setState({
+        //         data: rs
+        //     });
+        //      this.needShowPromotion() && this.showPromotion();
+        // });
+
+
+        Index.prefetch(this.props.params, this.props)
     }
     needShowPromotion(){
         return !visitedTagStore.getItem('visited') && !secureCodeStore.getItem()

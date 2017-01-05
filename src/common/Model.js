@@ -7,13 +7,16 @@
  * @module Model
  *
  */
-
+/**
+ * # Cannot read property 'post' of undefined
+ * # 编译的时候把target: node
+ */
 // import Config from '../config/dev';
 import Config from '../Config';
 import Spy from './Spy';
 import Store from './Store';
 import UserHelper from './UserHelper';
-var fetch = require('node-fetch');
+import fetch from 'isomorphic-fetch';
 let userData = UserHelper.getUser();
 let secureCodeStore = new Store('SECURE_CODE');
 class Model {

@@ -18,7 +18,6 @@ module.exports = {
         chunkFilename: "[name].min.js",
         publicPath: '/'
     },
-    cache: false,
     plugins: [
         new webpack.DefinePlugin({
             "process.env": {

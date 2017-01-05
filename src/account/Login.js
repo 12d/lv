@@ -9,7 +9,7 @@ import {Link} from 'react-router';
 import {Page, Validator,Toast,Bridge,UserHelper} from '../common/lv';
 
 // import '../css/order.css';
-export default class Detail extends Page {
+export default class Login extends Page {
     headerview = {
         title: '登录'
     }
@@ -49,9 +49,6 @@ export default class Detail extends Page {
                 <div className="login-row">
                     <input placeholder="输入您下单留的手机号" className="text-input" type="number" onInput={this.onMobileInput.bind(this)}/>
                 </div>
-
-
-
                 <div className="login-row" style={{display:'none'}}>
                     <div className="text-input verify-text-input">
                         <input placeholder="手机验证码" className="verify-text"/>
