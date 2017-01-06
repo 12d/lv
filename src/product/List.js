@@ -11,6 +11,7 @@ import {Model,Page,Prompt,Store,NormalError} from '../common/lv';
 var secureCodeStore = new Store('SECURE_CODE');
 var pageInstance;
 var visitedTagStore = new Store('VISITED_TAG',{},{lifetime: '1D'});
+require('../css/product.css');
 export default class Index extends Page {
     static prefetch(params, props){
 
@@ -94,6 +95,7 @@ export default class Index extends Page {
         // this.getList();
     }
     render(){
+        this.loadCSS(['/css/product.css']);
         var data = this.state.data && this.state.data.Data.Infos;
         return this.create(
             data && data.List.length

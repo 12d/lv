@@ -7,8 +7,7 @@ import React,{
 } from 'react';
 import {Link} from 'react-router';
 import {Page, Validator,Toast,Bridge,UserHelper} from '../common/lv';
-
-// import '../css/order.css';
+import from '../css/account.css';
 export default class Login extends Page {
     headerview = {
         title: '登录'
@@ -42,10 +41,10 @@ export default class Login extends Page {
         Bridge.callPhone('15618870543');
     }
     render(){
+        // this.loadCSS(['css/account.css']);
         return this.create(
             <section className="login-form-container">
-                <img src="/src/assets/logo-white.png" className="login-logo"/>
-
+                <img src="assets/logo-white.png" className="login-logo"/>
                 <div className="login-row">
                     <input placeholder="输入您下单留的手机号" className="text-input" type="number" onInput={this.onMobileInput.bind(this)}/>
                 </div>
@@ -59,7 +58,7 @@ export default class Login extends Page {
 
 
                 <div className="login-row">
-                    <button to="/order/list" className="mui-btn mui-btn-block login-btn" onClick={this.submit.bind(this)}>立即查询</button>
+                    <button className="mui-btn mui-btn-block login-btn" onClick={this.submit.bind(this)}>立即查询</button>
                 </div>
                 <p className="contact-us" onClick={this.callPhone}><span className="mui-icon mui-icon-phone"></span>联系美途旅旅</p>
             </section>

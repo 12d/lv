@@ -84,7 +84,7 @@ app.use(function(req, res){
 
                 if (!exists) {
                     console.log("This request URL " + pathname + " was not found on this server.")
-                    response.writeHead(404, {'Content-Type': 'text/plainx'});
+                    response.writeHead(404, {'Content-Type': 'text/plain'});
 
                     response.write("This request URL " + pathname + " was not found on this server.");
 

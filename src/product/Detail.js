@@ -88,7 +88,7 @@ export default class Detail extends Page {
         });
     }
     render(){
-        console.log('render')
+        this.loadCSS(['/css/product.css']);
         var rawData = this.state.data||{},
             data = rawData.Data,
             summary = data && (typeof data.Summary==='string' ? JSON.parse(data.Summary) : data.Summary);

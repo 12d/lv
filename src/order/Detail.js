@@ -67,7 +67,7 @@ export default class Detail extends Page {
             startDateInfo = getDateStr(data.TravelStartDateString);
             endDateInfo = getDateStr(data.TravelEndDateString)
         }
-
+        this.loadCSS(['/css/order.css']);
         return this.create(
                 data ?
                 <div className="mui-scroll">

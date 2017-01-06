@@ -47,6 +47,7 @@ export default class Index extends Page {
         super();
     }
     render(){
+        this.loadCSS(['/css/order.css']);
         return this.create(
             this.state.data.length
             ?

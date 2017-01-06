@@ -15,7 +15,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         filename:  "[name].entry.js",
-        chunkFilename: "[name].min.js",
+        chunkFilename: "[name].[hash:8].js",
         publicPath: '/'
     },
     plugins: [
@@ -37,7 +37,7 @@ module.exports = {
         // new webpack.NoErrorsPlugin(),
         //把指定文件夹xia的文件复制到指定的目录
         new TransferWebpackPlugin([
-            {from: 'css'}
+            {from: 'fonts'}
         ], path.resolve(__dirname,"dist"))
     ],
     module: {

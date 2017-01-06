@@ -17,6 +17,7 @@ export default class Index extends Page {
         super();
     }
     render(){
+        //this.loadCSS(['/css/product.css']);
         return this.create(
             <ul className="mui-table-view order-list-container">
                 <ProductItem/>

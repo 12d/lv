@@ -15,6 +15,7 @@ export default class ProductFeatures extends Page {
     }
     render(){
         var passedState = this.props.location.state;
+        this.loadCSS(['/css/product.css']);
         return this.create(
             <HTMLText html={passedState && passedState.features} style={{padding:10}}/>
         )

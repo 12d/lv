@@ -64,6 +64,7 @@ export default class CalendarPrice extends Page {
         )
     }
     render(){
+        this.loadCSS(['/css/product.css','/css/calendar.css']);
         return this.create(
             <Calendar size={this.state.size} data={this.state.data} onItemClick={this.selectDay.bind(this)} 
                       dayRender={this.onDayRender.bind(this)}

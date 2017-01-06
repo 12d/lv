@@ -5,6 +5,7 @@
 import React,{
     Component
 } from 'react';
+import '../css/order.css';
 import {Model, Page, NormalError} from '../common/lv';
 export default class Detail extends Page {
     constructor(){
@@ -28,7 +29,7 @@ export default class Detail extends Page {
     }
     render(){
         var data = this.state.data;
-
+        this.loadCSS(['css/order.css']);
         return this.create(
             (data && data.TripList) ? data.TripList.map((trip, index)=> {
                 return (

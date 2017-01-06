@@ -67,6 +67,7 @@ export default class Booking extends Page {
             daystr = selectedDayData && Object.keys(selectedDayData)[0],
             dayinfo = selectedDayData && selectedDayData[daystr] || {}
 
+        this.loadCSS(['/css/product.css']);
         return this.create(
             <div>
                 <ul className="mui-table-view order-fill">

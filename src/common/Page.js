@@ -58,10 +58,19 @@ class Page extends Component {
     // getInitialState(){
     //     return window.__INITIAL_STATE__;
     // }
-    create(content) {
+    loadCSS(styles){
+        this._stylesheets = styles;
+    }
+    create(content,stylesheets) {
+        stylesheets =  stylesheets || this._stylesheets;
+
         return (
             <div className="mui-page app-page-container">
                 <HeaderView {...this.headerview}/>
+                {
+                    stylesheets ? stylesheets.map((href)=>(<link href={href} rel="stylesheet"/>)) : null
+
+                }
                 {content}
                 {
                     this.state && this.state.isLoading ?
