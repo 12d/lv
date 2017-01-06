@@ -22,7 +22,6 @@ export default class OrderItem extends Component {
                 </ul>
 
                 <Link to={"/order/"+data.OrderId} className="order-content custom-list-content">
-                    <img style={{display:'none'}} className="mui-media-object mui-pull-left list-img" src="http://img1.imgtn.bdimg.com/it/u=1295282351,3518762526&fm=21&gp=0.jpg"/>
                     <div className="mui-media-body order-name">
                         {data.LineName}
                     </div>

@@ -8,7 +8,7 @@ import React,{
 
 import {Page, Model, UserHelper,NormalError} from '../common/lv';
 import OrderItem from './OrderItem';
-
+import '../css/order.css';
 export default class Index extends Page {
     headerview = {
         title: '我的订单列表',
@@ -47,7 +47,7 @@ export default class Index extends Page {
         super();
     }
     render(){
-        this.loadCSS(['/css/order.css']);
+        // this.loadCSS(['/css/order.css']);
         return this.create(
             this.state.data.length
             ?

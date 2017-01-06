@@ -9,6 +9,11 @@ import HeaderView from './HeaderView';
 import ActivityIndicator from './ActivityIndicator';
 
 import { browserHistory,hashHistory } from 'react-router';
+
+// import '../css/base.css';
+// import '../css/mui-extra.css';
+// import '../css/app.css';
+
 var history = browserHistory;
 const NOOP = ()=> {
 }

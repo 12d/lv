@@ -6,6 +6,7 @@ import React,{
     Component
 } from 'react';
 import {Page, HTMLText} from '../common/lv';
+import '../css/product.css';
 export default class ProductFeatures extends Page {
     headerview = {
         title: '旅游线路特色'
@@ -15,7 +16,7 @@ export default class ProductFeatures extends Page {
     }
     render(){
         var passedState = this.props.location.state;
-        this.loadCSS(['/css/product.css']);
+
         return this.create(
             <HTMLText html={passedState && passedState.features} style={{padding:10}}/>
         )

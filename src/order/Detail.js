@@ -7,6 +7,7 @@ import React,{
 } from 'react';
 import {Link} from 'react-router';
 import {Page, Model} from '../common/lv';
+import '../css/order.css';
 var weeksStr = ['日','一','二','三','四','五','六'];
 function paddingStr(str){
     str += '';
@@ -67,7 +68,7 @@ export default class Detail extends Page {
             startDateInfo = getDateStr(data.TravelStartDateString);
             endDateInfo = getDateStr(data.TravelEndDateString)
         }
-        this.loadCSS(['/css/order.css']);
+
         return this.create(
                 data ?
                 <div className="mui-scroll">

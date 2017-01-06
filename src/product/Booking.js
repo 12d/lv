@@ -8,6 +8,7 @@ import React,{
 import {Page,  Model, Store, Validator, Toast} from '../common/lv';
 import {Link} from 'react-router';
 var priceCalendarData = new Store('KEY_PRICE_CALENDAR');
+import '../css/product.css';
 export default class Booking extends Page {
     headerview = {
         title: '旅行预约'
@@ -66,8 +67,7 @@ export default class Booking extends Page {
             detailData = passedState && passedState.data,
             daystr = selectedDayData && Object.keys(selectedDayData)[0],
             dayinfo = selectedDayData && selectedDayData[daystr] || {}
-
-        this.loadCSS(['/css/product.css']);
+        
         return this.create(
             <div>
                 <ul className="mui-table-view order-fill">

@@ -9,6 +9,8 @@ import React, {
 import {Calendar,Page,Model,DateUtil,Store} from '../common/lv';
 
 var priceCalendarData = new Store('KEY_PRICE_CALENDAR');
+import '../css/product.css';
+import '../css/calendar.css';
 export default class CalendarPrice extends Page {
     headerview = {
         title: '价格日历'
@@ -64,7 +66,6 @@ export default class CalendarPrice extends Page {
         )
     }
     render(){
-        this.loadCSS(['/css/product.css','/css/calendar.css']);
         return this.create(
             <Calendar size={this.state.size} data={this.state.data} onItemClick={this.selectDay.bind(this)} 
                       dayRender={this.onDayRender.bind(this)}

@@ -4,12 +4,28 @@
  */
 var webpack = require("webpack");
 var config = require('../webpack.seo.config');
-// returns a Compiler instance
-var compiler = webpack(config);
+webpack(config,function(err, stats) {
+    if (err || stats.hasErrors()) {
+        // console.log('asdfa')
+    }
+    if (err) {
+        console.error(err.stack || err);
+        if (err.details) {
+            console.error(err.details);
+        }
+        return;
+    }
 
-compiler.run(function(err, stats) {
-    err && console.log(err);
-    console.log('release successful');
+    const info = stats.toJson();
+
+    if (stats.hasErrors()) {
+        console.error(info.errors);
+    }
+
+    if (stats.hasWarnings()) {
+        console.warn(info.warnings)
+    }
+    console.log('release seo version successfully')
 });
 // or
 // compiler.watch({ // watch options:

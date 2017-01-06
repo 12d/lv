@@ -457,7 +457,7 @@ var mui = (function(document, undefined) {
 
     return $;
 })(document);
-//window.mui = mui;
+window.mui = mui;
 //'$' in window || (window.$ = mui);
 /**
  * $.os

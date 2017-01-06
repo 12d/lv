@@ -14,6 +14,7 @@ var priceCalendarData = new Store('KEY_PRICE_CALENDAR');
 var secureCodeStore = new Store('SECURE_CODE');
 var pageInstance;
 var visitedTagStore = new Store('VISITED_TAG',{},{lifetime: '1D'});
+import '../css/product.css';
 export default class Detail extends Page {
     headerview = {
         title: '产品详情',
@@ -88,7 +89,6 @@ export default class Detail extends Page {
         });
     }
     render(){
-        this.loadCSS(['/css/product.css']);
         var rawData = this.state.data||{},
             data = rawData.Data,
             summary = data && (typeof data.Summary==='string' ? JSON.parse(data.Summary) : data.Summary);

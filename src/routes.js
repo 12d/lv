@@ -48,8 +48,8 @@ function loadProductFeatures(nextState, callback){
         }, 'productfeatures')
 }
 function loadLineSchedule(nextState, callback){
-        require.ensure(['./product/LineSchedule'], function(require){
-                callback(null, require('./product/LineSchedule').default);
+        require.ensure(['./order/LineSchedule'], function(require){
+                callback(null, require('./order/LineSchedule').default);
         }, 'lineschedule')
 }
 function loadBooking(nextState, callback){

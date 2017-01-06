@@ -29,7 +29,7 @@ export default class Detail extends Page {
     }
     render(){
         var data = this.state.data;
-        this.loadCSS(['css/order.css']);
+        // this.loadCSS(['css/order.css']);
         return this.create(
             (data && data.TripList) ? data.TripList.map((trip, index)=> {
                 return (

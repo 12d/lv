@@ -7,7 +7,7 @@ import React,{
 } from 'react';
 import {Link} from 'react-router';
 import {Page, Validator,Toast,Bridge,UserHelper} from '../common/lv';
-import from '../css/account.css';
+import '../css/account.css';
 export default class Login extends Page {
     headerview = {
         title: '登录'
@@ -44,7 +44,7 @@ export default class Login extends Page {
         // this.loadCSS(['css/account.css']);
         return this.create(
             <section className="login-form-container">
-                <img src="assets/logo-white.png" className="login-logo"/>
+                <img src={require("../assets/logo-white.png")} className="login-logo"/>
                 <div className="login-row">
                     <input placeholder="输入您下单留的手机号" className="text-input" type="number" onInput={this.onMobileInput.bind(this)}/>
                 </div>

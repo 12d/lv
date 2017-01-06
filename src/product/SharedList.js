@@ -8,7 +8,7 @@ import React,{
 
 import Page from '../common/Page';
 import ProductItem from './ProductItem';
-
+import '../css/product.css';
 export default class Index extends Page {
     static headerview = {
 
