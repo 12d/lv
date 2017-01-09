@@ -4,7 +4,7 @@
  */
 
 export default class Bridge{
-    callPhone(){
-
+    static callPhone(num){
+        window.location.href = 'tel://' + num;
     }
 }

@@ -32,4 +32,5 @@
 .mui-scroll .booking-result {margin-left:0;margin-right:0;border-left:none;border-right:none;}
 .mui-scroll .booking-result .mui-icon{border-radius:35px;background:white;border:1px solid green;margin-right:10px;font-weight:bold;font-size:40px;}
 .mui-scroll .booking-succss {color:green;background:#edfdef}
-.order-list-container .mui-card{border-right:none;border-left:none;background:transparent}
+.order-list-container .mui-card{border-right:none;border-left:none;}
+.order-list-container{background:transparent}
