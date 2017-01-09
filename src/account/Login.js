@@ -16,10 +16,17 @@ export default class Login extends Page {
         super();
     }
     componentWillMount(){
-        this.state = {
-            mobile: null
-        }
+        this.state = this.getInitialData()
+        // console.log(state);
+        console.log('will')
 
+    }
+    shouldComponentUpdate(){
+        return true
+    }
+    componentDidMount(){
+        window.page = this;
+        console.log(this.getInitialData())
     }
     validate(){
         return Validator.isMobile(this.state.mobile)
@@ -41,6 +48,8 @@ export default class Login extends Page {
         Bridge.callPhone('15618870543');
     }
     render(){
+        console.log('render');
+        console.log(this.state);
         // this.loadCSS(['css/account.css']);
         return this.create(
             <section className="login-form-container">

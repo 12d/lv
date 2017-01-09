@@ -66,7 +66,7 @@ app.use(function(req, res){
                 // var attrs = Object.assign({data: values}, renderProps);
                 renderProps.location.state = values[0];
                 console.log(renderProps.location.state,'renderProps.location.state')
-                res.status(200).send(renderFullPage(ReactDOM.renderToString(React.createElement(RouterContext,renderProps)), values));
+                res.status(200).send(renderFullPage(ReactDOM.renderToString(React.createElement(RouterContext,renderProps)), values[0]||{}));
             }).catch(error=>res.status(500).send(error.message));
             console.log('waiting for response')
 

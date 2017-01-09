@@ -58,7 +58,7 @@ class Page extends Component {
 
     }
     getInitialData(){
-        return typeof window=='undefined' ? this.props.location.state : window.__INITIAL_STATE__[0]
+        return typeof window=='undefined' ? this.props.location.state : window.__INITIAL_STATE__
     }
     // getInitialState(){
     //     return window.__INITIAL_STATE__;

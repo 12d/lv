@@ -11,19 +11,19 @@ module.exports = {
         client: './src/bootstrap',
         libs: './src/libs/mui/mui'
     },
-    // resolve: {
-    //     alias: {
-    //         'react': 'preact-compat',
-    //         'react-dom': 'preact-compat'
-    //     }
-    // },
+    resolve: {
+        alias: {
+            'react': 'preact-compat',
+            'react-dom': 'preact-compat'
+        }
+    },
     target: 'web',
     output: {
         path: path.join(__dirname, 'dist'),
         filename:  "[name].[hash:8].entry.js",
         chunkFilename: "[name].[hash:8].js",
 
-        publicPath: 'http://s5.lvlv.io/h5'
+        publicPath: '/'
     },
     plugins: [
         new webpack.DefinePlugin({
