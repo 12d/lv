@@ -42,12 +42,13 @@
     "style-loader": "^0.13.1",
     "transfer-webpack-plugin": "^0.1.4",
     "url-loader": "^0.5.7",
-    "webpack": "^2.1.0-beta.28",
+    "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.26.0",
+    "isomorphic-fetch": "^2.2.1",
     "preact": "^7.1.0",
     "preact-compat": "^3.9.4",
     "react": "^15.3.2",
