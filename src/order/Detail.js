@@ -6,7 +6,7 @@ import React,{
     Component
 } from 'react';
 import {Link} from 'react-router';
-import {Page, Model} from '../common/lv';
+import {Page, Model,Bridge} from '../common/lv';
 import '../css/order.css';
 var weeksStr = ['日','一','二','三','四','五','六'];
 function paddingStr(str){
@@ -94,14 +94,14 @@ export default class Detail extends Page {
                         <li className="mui-table-view-cell">
                             <a href="#account" className="mui-navigate-right mui-pull-left">订单总额</a>
                             <div className="mui-pull-right">
-                                <span style={{fontSize: 16, marginRight: 10}}>{data.AmountShow}</span>
+                                <span style={{fontSize: 16, marginRight: 10,color: 'orange'}}>¥&nbsp;{data.Amount}</span>
                             </div>
                         </li>
                         <li className="mui-table-view-cell mui-media">
                             <a  href="#account">
 
                                 <div className="mui-media-body" style={{whiteSpace:'normal'}}>
-                                    <span className="mui-icon mui-icon-closeempty" style={{color:'red',fontSize:24}}></span>您的订单异常, 客服无法与您取得联系, 请点击屏幕底部按钮联系旅行社
+                                    <span className="mui-icon mui-icon mui-icon-checkmarkempty" style={{color:'green',fontSize:24}}></span>您的订单状态正常({data.OrderStatusShow}), 如有疑问, 请点击屏幕底部按钮联系客服
                                     <p className='mui-ellipsis' style={{textAlign:'right'}}>2016-12-12 12:12</p>
                                 </div>
                             </a>
@@ -131,24 +131,24 @@ export default class Detail extends Page {
                         <li className="mui-table-view-cell">
                             <a>
                                 导游/领队
-                                <span className="mui-pull-right field-value">刘导游<span className="mui-icon mui-icon-phone guider-phone"></span></span>
+                                <span className="mui-pull-right field-value">正在安排中</span>
                             </a>
                         </li>
                         <li className="mui-table-view-cell">
                             <a href="#account" className="mui-navigate-right">出行人
-                                <span className="mui-pull-right field-value">陈建国,陈鑫,李曼等12人</span>
+                                <span className="mui-pull-right field-value">{data.ContactName}等{data.AdultCount+data.ChildCount}人</span>
                             </a>
 
                         </li>
                         <li className="mui-table-view-cell">
                             <Link to={"/order/"+this.props.params.id+"/schedule"} className="mui-navigate-right">行程安排</Link>
                         </li>
-                        <li className="mui-table-view-cell">
+                        <li className="mui-table-view-cell" style="display:none">
                             <a href="#account" className="mui-navigate-right">交通/住宿</a>
                         </li>
                     </ul>
                     <div style={{margin: '10px'}}>
-                        <button className="mui-btn mui-btn-block theme-font" style={{padding: '10px 0',borderRadius:0}}><span style={{fontSize:24}} className="mui-icon mui-icon-phone"></span>联系旅行社</button>
+                        <button onClick={()=>Bridge.callPhone(15618870543)} className="mui-btn mui-btn-block theme-font" style={{padding: '10px 0',borderRadius:0}}><span style={{fontSize:24}} className="mui-icon mui-icon-phone"></span>联系客服</button>
                     </div>
                 </div>
                 :

@@ -5,6 +5,7 @@
 import React,{
     Component
 } from 'react';
+import {HTMLText} from '../common/lv';
 export default class DayRouter extends Component {
     /**
      * <div className="route-item" data-travelitemid="2048"><label>09:30</label>
@@ -27,7 +28,7 @@ export default class DayRouter extends Component {
                                                 <span key={"poi"+key} className="mui-badge mui-badge-default">{poi.POIName}</span>
                                             ))
                                         }
-                                        <div className="item-desc">{item.TripDesc}</div>
+                                        <div className="item-desc"><HTMLText html={item.TripDesc}/></div>
                                         <div className="item-tip">活动耗时：{item.TakeTime||'待定'}</div>
                                     </div>
                                 </div>

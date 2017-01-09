@@ -10,8 +10,8 @@ import React, {
 export default class HTMLText extends Component {
     render(){
         return (
-            <div className="htmltext" ref="container" dangerouslySetInnerHTML={{__html: this.props.html}} style={this.props.style}>
-            </div>
+            <pre className="htmltext" ref="container" dangerouslySetInnerHTML={{__html: this.props.html}} style={this.props.style}>
+            </pre>
         )
     }
     componentDidMount(){

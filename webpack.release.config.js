@@ -42,13 +42,13 @@ module.exports = {
 
         new HtmlWebpackPlugin({
 
-            // minify: {
-            //     removeEmptyAttributes: true,
-            //     removeComments: true,
-            //     minifyJS: true,
-            //     minifyCSS: true,
-            //     collapseWhitespace: true
-            // },
+            minify: {
+                removeEmptyAttributes: true,
+                removeComments: true,
+                minifyJS: true,
+                minifyCSS: true,
+                collapseWhitespace: true
+            },
             chunks:['libs','basecss','client'],
             chunksSortMode: 'none',
             template: 'index.html',

@@ -1,5 +1,5 @@
 .order-status{position: absolute;right:10px;top:10px;text-align: center;}
-.order-status-text{font-size: 12px;margin-top: -4px;}
+.order-status-text{font-size: 12px;margin-top: 0px;}
 
 
 .mui-table-view-cell>a.order-content{white-space: normal;

@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var TransferWebpackPlugin = require('transfer-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin"); //将css生成单独文件
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+// var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: {
         // seo: './src/bootstrap-seo',

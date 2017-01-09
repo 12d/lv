@@ -65,6 +65,7 @@ export default class Detail extends Page {
     }
     componentDidMount(){
         this.getDetail();
+
     }
     componentWillMount(){
         console.log('will amount')
@@ -80,6 +81,10 @@ export default class Detail extends Page {
             this.setState({
                 data: rs,
                 selectedDay: priceCalendarData.getItem('selectedDay')
+            },()=>{
+                mui("#slider").slider({
+                    interval: 5000
+                });
             });
             this.needShowPromotion() && this.showPromotion();
         }).catch((e)=>{

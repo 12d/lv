@@ -12,8 +12,17 @@ import React, {
 export default class ImageSlider extends Component {
     render(){
         return (
-            <div id="slider" className="mui-slider" data-slider="1">
-                <div className="mui-slider-group mui-slider-loop" style={{transform: "translate3d(0px, 0px, 0px) translateZ(0px)"}}>
+            <div id="slider" className="mui-slider">
+                <div className="mui-slider-group mui-slider-loop">
+                    {
+                        this.props.data && this.props.data.length ?
+                            <div class="mui-slider-item mui-slider-item-duplicate">
+                                <a href="#">
+                                    <img src={this.props.data[0].PicturePath} alt={this.props.data[0].PictureName}/>
+                                </a>
+                            </div> : null
+                    }
+
                     {
                         this.props.data.map((item,index)=>(
                             <div className="mui-slider-item" key={"pic"+index}>
@@ -23,7 +32,14 @@ export default class ImageSlider extends Component {
                             </div>
                         ))
                     }
-
+                    {
+                        this.props.data && this.props.data.length ?
+                            <div class="mui-slider-item mui-slider-item-duplicate">
+                                <a href="#">
+                                    <img src={this.props.data[this.props.data.length-1].PicturePath} alt={this.props.data[this.props.data.length-1].PictureName}/>
+                                </a>
+                            </div> : null
+                    }
                 </div>
                 <div className="mui-slider-indicator">
                     {
