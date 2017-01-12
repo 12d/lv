@@ -4,7 +4,7 @@
   "description": "a new html5 project",
   "main": "",
   "scripts": {
-    "packseo": "node ./cli/release-seo.js",
+    "packseo": "node ./cli/release-seo.js;node ./cli/release.js",
     "pack": "node ./cli/release.js",
     "seo": "node ./cli/seo.js",
     "start": "node ./cli/server.js",

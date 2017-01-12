@@ -11,6 +11,9 @@ export default class Detail extends Page {
     constructor(){
         super()
     }
+    headerview = {
+        title: '行程安排'
+    }
     componentDidMount(){
         this.showLoading();
         Model.post('/sharedline/getlinedetail',{

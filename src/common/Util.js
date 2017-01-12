@@ -11,4 +11,14 @@ export default class Util {
     static runAt(){
         return typeof window==='undefined' ? 'server' : 'client'
     }
+    static UA = (()=>{
+        if(Util.runAt() === 'server'){
+            return {}
+        }else{
+            let uaStr = navigator.userAgent.toLowerCase();
+            return {
+                wechat: /micromessenger/.test(uaStr)
+            }
+        }
+    })()
 }

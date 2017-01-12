@@ -16,13 +16,14 @@ export default class CalendarPrice extends Page {
         title: '价格日历'
     }
     componentDidMount(){
+
         this.getList();
     }
     componentWillMount(){
 
         this.state = {
             size: 4,
-            data: {},
+            data: null,
             selectedDays: priceCalendarData.getItem('selectedDay')
         }
     }
@@ -38,7 +39,7 @@ export default class CalendarPrice extends Page {
     getList(){
         var period = this.getPeriod();
         Model.post('/sharedline/getlineair',{
-            travellineid: this.props.params.id,
+            lineid: this.props.params.id,
             ...period
         }).then((rs)=>{
             this.setState({
@@ -67,9 +68,12 @@ export default class CalendarPrice extends Page {
     }
     render(){
         return this.create(
+            this.state.data ?
             <Calendar size={this.state.size} data={this.state.data} onItemClick={this.selectDay.bind(this)} 
                       dayRender={this.onDayRender.bind(this)}
                       selected={this.state.selectedDays}/>
+              :
+            null
         )
     }
 }

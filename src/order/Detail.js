@@ -88,7 +88,7 @@ export default class Detail extends Page {
                     }
                     <ul className="mui-table-view ">
                         <li className="mui-table-view-cell">
-                            <span className="mui-pull-left normal-font">订单编号&nbsp;{data.OrderId}</span>
+                            <span className="mui-pull-left normal-font">订单编号&nbsp;{data.OrderNo}</span>
                             <span className="mui-pull-right normal-font">{data.DataChangeCreateTimeString} <span className="tiny-font gray-font">预定</span></span>
                         </li>
                         <li className="mui-table-view-cell">
@@ -102,7 +102,7 @@ export default class Detail extends Page {
 
                                 <div className="mui-media-body" style={{whiteSpace:'normal'}}>
                                     <span className="mui-icon mui-icon mui-icon-checkmarkempty" style={{color:'green',fontSize:24}}></span>您的订单状态正常({data.OrderStatusShow}), 如有疑问, 请点击屏幕底部按钮联系客服
-                                    <p className='mui-ellipsis' style={{textAlign:'right'}}>2016-12-12 12:12</p>
+                                    <p className='mui-ellipsis' style={{textAlign:'right'}}>{data.DataChangeCreateTimeString}</p>
                                 </div>
                             </a>
                         </li>
@@ -135,7 +135,7 @@ export default class Detail extends Page {
                             </a>
                         </li>
                         <li className="mui-table-view-cell">
-                            <a href="#account" className="mui-navigate-right">出行人
+                            <a href="#account">出行人
                                 <span className="mui-pull-right field-value">{data.ContactName}等{data.AdultCount+data.ChildCount}人</span>
                             </a>
 

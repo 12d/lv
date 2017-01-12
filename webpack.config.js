@@ -50,7 +50,7 @@ module.exports = {
 
         // basecss: ['./src/css/base.css','./src/css/mui-extra.css','./src/css/app.css'],
         libs: './src/libs/mui/mui',
-        client: ['webpack-dev-server/client?http://localhost:3001',
+        client: ['webpack-dev-server/client?http://192.168.0.11:8080',
             'webpack/hot/only-dev-server',
             './src/bootstrap.js']
     },

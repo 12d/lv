@@ -160,10 +160,9 @@ class Model {
         }).execute(params);
     }
 
-    static get(url, params, useAuth) {
+    static get(url, params, options) {
         return this.create({
             ...options,
-            useAuth,
             method: Model.GET,
             url: url
         }).execute(params);

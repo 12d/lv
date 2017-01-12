@@ -7,7 +7,7 @@
 import React,{
     Component
 } from 'react';
-import {Page, ImageSlider, Model,HTMLText,NormalError,Store,Prompt} from '../common/lv';
+import {Page, ImageSlider, Model,HTMLText,NormalError,Store,Prompt,Util,Bridge} from '../common/lv';
 import {Link } from 'react-router';
 import DayRouter from './DayRouter';
 var priceCalendarData = new Store('KEY_PRICE_CALENDAR');
@@ -15,6 +15,7 @@ var secureCodeStore = new Store('SECURE_CODE');
 var pageInstance;
 var visitedTagStore = new Store('VISITED_TAG',{},{lifetime: '1D'});
 import '../css/product.css';
+
 export default class Detail extends Page {
     headerview = {
         title: '产品详情',
@@ -63,6 +64,11 @@ export default class Detail extends Page {
             message: '输入优惠码, 查看更低价格'
         })
     }
+    componentWillUnmount(){
+        this.slider && this.slider.slider({
+            interval: 0
+        });
+    }
     componentDidMount(){
         this.getDetail();
 
@@ -78,11 +84,21 @@ export default class Detail extends Page {
     }
     getDetail(){
         Detail.prefetch(this.props.params).then((rs)=>{
+            var detailData = rs.Data.Infos||{};
+            this.wechatReady(()=>{
+                this.wechat.share({
+                    title: '我在美途旅旅发现了很赞的旅行线路, 快看看~~~', // 分享标题
+                    desc: detailData.LineName, // 分享描述
+                    link: location.href, // 分享链接
+                    imgUrl: rs.Data.Infos.LinePicList && rs.Data.Infos.LinePicList[0].PicturePath || 'http://s4.lvlv.io/static/images/green-logo.887c9c7.png', // 分享图标
+                });
+            })
             this.setState({
                 data: rs,
                 selectedDay: priceCalendarData.getItem('selectedDay')
             },()=>{
-                mui("#slider").slider({
+                this.slider = mui("#slider");
+                this.slider.slider({
                     interval: 5000
                 });
             });
@@ -188,7 +204,7 @@ export default class Detail extends Page {
                 {
                     data ?
                         <div className="mui-bar-footer action-btns">
-                            <button className="mui-btn mui-btn-default mui-col-xs-4"><span className="mui-icon mui-icon-phone"></span>联系客服</button>
+                            <button className="mui-btn mui-btn-default mui-col-xs-4" onClick={()=>{Bridge.callPhone('15618870543')}}><span className="mui-icon mui-icon-phone"></span>联系客服</button>
                             <Link to={{
                                 pathname:"/product/booking/"+data.LineID,
                                 state: {

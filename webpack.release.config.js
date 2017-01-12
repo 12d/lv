@@ -23,7 +23,10 @@ module.exports = {
         filename:  "[name].[hash:8].entry.js",
         chunkFilename: "[name].[hash:8].js",
 
-        publicPath: '/'
+        publicPath: 'http://s1.lvlv.io/h5'
+    },
+    externals: {
+        wx: 'jWeixin'
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -51,7 +54,7 @@ module.exports = {
             },
             chunks:['libs','basecss','client'],
             chunksSortMode: 'none',
-            template: 'index.html',
+            template: 'src/app-template.html',
             filename: 'index.html'
         }),
         new webpack.optimize.CommonsChunkPlugin({name: "libs", filename: "[name].[hash:8].js", chunks: ['libs']}),

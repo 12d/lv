@@ -23,7 +23,7 @@ export default class Booking extends Page {
         }
     }
     validate(){
-        return Validator.isMobile(this.state.mobile) && Validator.isNotEmpty(this.state.contact);
+        return Validator.isMobile(this.state.mobile) && Validator.isNotEmpty(this.state.contact) && priceCalendarData;
     }
 
     submit(){
@@ -69,11 +69,14 @@ export default class Booking extends Page {
             dayinfo = selectedDayData && selectedDayData[daystr] || {}
         
         return this.create(
+            detailData && detailData.LinePicList ?
             <div>
                 <ul className="mui-table-view order-fill">
                     <li className="mui-table-view-cell mui-media">
                         <div>
-                            <img className="mui-media-object mui-pull-left" src={detailData.LinePicList[0].PicturePath}/>
+                            {
+                                detailData.LinePicList[0] ? <img className="mui-media-object mui-pull-left" src={detailData.LinePicList[0].PicturePath}/> : null
+                            }
                             <div className="mui-media-body">
                                 {detailData.LineName}
                             </div>
@@ -104,11 +107,11 @@ export default class Booking extends Page {
                     <li className="mui-table-view-divider"></li>
                     <li className="mui-table-view-cell fill-required">
                         <span className="mui-icon mui-icon-person"></span><span>联系人</span>
-                        <input placeholder="请输入联系人姓名" className="info-fill" onInput={this.onInput.bind(this,'contact')}/>
+                        <input placeholder="请输入联系人姓名" className="info-fill" onInput={this.onInput.bind(this,'contact')} type="text"/>
                     </li>
                     <li className="mui-table-view-cell fill-required">
                         <span className="mui-icon-extra mui-icon-extra-phone" style={{marginTop:0}}></span><span>联系电话</span>
-                        <input placeholder="请输入联系人的手机号" className="info-fill" onInput={this.onInput.bind(this,'mobile')}/>
+                        <input placeholder="请输入联系人的手机号" className="info-fill" onInput={this.onInput.bind(this,'mobile')} type="tel"/>
                     </li>
                     <li className="mui-table-view-divider">价格</li>
                     <li className="mui-table-view-cell">
@@ -133,12 +136,14 @@ export default class Booking extends Page {
                     </li>
 
                 </ul>
-                <p style={{fontSize:12,textAlign:'center',marginBottom:50,marginTop:10}}>提交订单后客服会在第一时间联系您, 请注意接听来电</p>
+                <p style={{fontSize:12,textAlign:'center',paddingBottom:60,marginTop:10}}>提交订单后客服会在第一时间联系您, 请注意接听来电</p>
                 <div className="mui-bar-footer action-btns">
 
                     <button className="mui-btn mui-btn-warning mui-col-xs-12" onClick={this.submit.bind(this)}>提交预约</button>
                 </div>
             </div>
+            :
+            null
         )
     }
 }

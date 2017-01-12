@@ -13,7 +13,7 @@ export default class OrderItem extends Component {
         return (
             <li className="mui-table-view-cell mui-media mui-card custom-list ">
                 <ul className="normal-order-list">
-                    <li className="gray-font">订单编号<span className="theme-font m-left-10">{data.OrderId}</span></li>
+                    <li className="gray-font">订单编号<span className="theme-font m-left-10">{data.OrderNo}</span></li>
                     <li className="gray-font">出行时间<span className="m-left-10">{data.TravelStartDateString} 至 {data.TravelEndDateString}</span></li>
                     <li className="order-status">
                         <img src={require('../assets/clock.png')} className="app-icon"/>

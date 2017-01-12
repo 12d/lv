@@ -9,7 +9,7 @@ import HeaderView from './HeaderView';
 import ActivityIndicator from './ActivityIndicator';
 
 import { browserHistory,hashHistory } from 'react-router';
-
+import Util from './Util';
 // import '../css/base.css';
 // import '../css/mui-extra.css';
 // import '../css/app.css';
@@ -94,10 +94,18 @@ class Page extends Component {
     }
     componentDidMount() {
 
-        // this.header = this.refs.header;
     }
 
+    wechatReady(callback){
+        if(Util.UA.wechat){
 
+            require.ensure(['./WechatShare'], (require)=>{
+                var WechatShare = require('./WechatShare').default;
+                this.wechat = new WechatShare();
+                this.wechat.ready(callback)
+            })
+        }
+    }
 
     showLoading() {
         console.log('showLoading')
