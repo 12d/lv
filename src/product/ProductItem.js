@@ -24,7 +24,7 @@ export default class ProductItem extends Component {
                 </Link>
                 <div className="order-agent gray-font ">
                     <span>{data.TravelStoreName}</span>
-                    <span className="order-price-wrap"><span className="order-price">￥{data.CostPrice>0 ? data.CostPrice: data.LowestPrice}</span>{data.CostPrice>0?'批发价':'起'}</span>
+                    <span className="order-price-wrap"><span className="order-price">￥{data.LowestCostPrice>0 ? data.LowestCostPrice: data.LowestPrice}</span>{data.LowestCostPrice>0?'批发价':'起'}</span>
                 </div>
             </li>
         )

@@ -126,7 +126,10 @@ export default class Detail extends Page {
                     <div className="mui-table-view page-section">
                         <h1 className="product-name">{data.LineName}</h1>
                         <p>
-                            <span className="prices"><span className="stars">评分&nbsp;{data.StarLevel}&nbsp;星</span><b className="price">&yen;&nbsp;{data.Price||0}</b></span>
+                            <span className="prices">
+                                <span className="stars">评分&nbsp;{data.StarLevel}&nbsp;星</span>
+                                <b className="price">&yen;&nbsp;{data.CostPrice>0?data.CostPrice:data.Price}</b>&nbsp;{data.CostPrice>0?'批发价':'起'}
+                            </span>
                             <span className="">销量&nbsp;{data.OrderPersonCount}</span>
                         </p>
                     </div>
