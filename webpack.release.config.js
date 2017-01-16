@@ -23,7 +23,7 @@ module.exports = {
         filename:  "[name].[hash:8].entry.js",
         chunkFilename: "[name].[hash:8].js",
 
-        publicPath: 'http://s1.lvlv.io/h5'
+        publicPath: 'http://s1.lvlv.io/h5/'
     },
     externals: {
         wx: 'jWeixin'
@@ -35,14 +35,14 @@ module.exports = {
             }
         }),
         // 压缩打包的文件
-
+	
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 //supresses warnings, usually from module minification
                 warnings: false
             }
         }),
-
+	
         new HtmlWebpackPlugin({
 
             minify: {
