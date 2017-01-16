@@ -128,7 +128,7 @@ export default class Detail extends Page {
                         <p>
                             <span className="prices">
                                 <span className="stars">评分&nbsp;{data.StarLevel}&nbsp;星</span>
-                                <b className="price">&yen;&nbsp;{data.CostPrice>0?data.CostPrice:data.Price}</b>&nbsp;{data.CostPrice>0?'批发价':'起'}
+                                <b className="price">&yen;&nbsp;{data.CostPrice>0?data.CostPrice:data.Price}</b><span>&nbsp;{data.CostPrice>0?'批发价':'起'}</span>
                             </span>
                             <span className="">销量&nbsp;{data.OrderPersonCount}</span>
                         </p>
