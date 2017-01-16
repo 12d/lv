@@ -22,7 +22,7 @@ var apis = {
 export default class Share {
     constructor(options){
         this.options = {
-            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
             appId: 'wx407f4a1a28d9c33d', // 必填，公众号的唯一标识
             timestamp: '', // 必填，生成签名的时间戳
             nonceStr: '', // 必填，生成签名的随机串
@@ -89,7 +89,7 @@ export default class Share {
     share(shareData){
         wx.ready(()=>{
             var config,
-                self,
+                self = this,
                 timelineConfig,
                 sessionConfig,
                 qqConfig,
@@ -99,7 +99,14 @@ export default class Share {
             for(let type in apis){
                 config = shareData[type];
                 if(!config) {
-                    config = shareData['default'] || shareData
+                    config = shareData['default'] || shareData;
+                    //拷贝一个对象
+                    config = Object.assign({},config);
+                    //如果是朋友圈,默认标题是title+desc
+                    if(type==='timeline'){
+                        config.title = '美途线路推荐:'+config.desc;
+                    }
+                    if(!config.imgUrl) config.imgUrl=require("../assets/green-logo.png")
                 }
                 //add events
                 ['success','cancel'].forEach((event)=>{
@@ -116,7 +123,7 @@ export default class Share {
     }
     on(type, success, cancel){
         this._listeners[type+'_success'] = success;
-        this._listeners[type+'_faile'] = fail;
+        this._listeners[type+'_fail'] = fail;
         return this;
     }
     static getInstance(){

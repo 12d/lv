@@ -47,24 +47,27 @@ export default class Index extends Page {
         this.urlQuery = this.props.location.query;
     }
     getList(){
-        // var list = this.props.location.query.id;
-        // Model.post('/sharedline/getlinelist',{
-        //     travellineidlist: list && list.split(','),
-        //     pageindex:1,
-        //     pagesize:20
-        // },{
-        //     useSecureCode: true
-        // }).then((rs)=>{
-        //     // debugger
-        //     // console.log(rs.Data.Infos.List,'rs.Data.Info.List')
-        //     this.setState({
-        //         data: rs
-        //     });
-        //      this.needShowPromotion() && this.showPromotion();
-        // });
+        Index.prefetch({},this.props).then((rs)=>{
+            var listInfos = rs.Data.Infos,
+                firstLine = listInfos &&listInfos.List && listInfos.List[0];
 
-
-        Index.prefetch(this.props.params, this.props)
+            firstLine && this.wechatReady(()=>{
+                this.wechat.share({
+                    title: '我在美途旅旅发现了很赞的旅行线路, 快看看~~', // 分享标题
+                    desc: '\"'+firstLine.LineName+'\"等'+listInfos.List.length+'条精美线路', // 分享描述
+                    link: location.href, // 分享链接
+                    imgUrl: firstLine.LinePicList[0] && firstLine.LinePicList[0].PicturePath, // 分享图标
+                });
+            })
+            this.setState({
+                data: rs
+            });
+            this.needShowPromotion() && this.showPromotion();
+        }).catch((e)=>{
+            this.setState({
+                data: null
+            })
+        });
     }
     needShowPromotion(){
         return !visitedTagStore.getItem('visited') && !secureCodeStore.getItem()
@@ -92,7 +95,7 @@ export default class Index extends Page {
         })
     }
     componentDidMount(){
-        // this.getList();
+        this.getList();
     }
     render(){
         var data = this.state.data && this.state.data.Data.Infos;

@@ -3,5 +3,5 @@ export default {
         appId: 'wx7b2ca4b94a1ff071',
         appSecret: ''
     },
-    baseModelUrl: 'http://192.168.0.4/'
+    baseModelUrl: 'http://192.168.0.29/'
 }

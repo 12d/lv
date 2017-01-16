@@ -90,7 +90,7 @@ export default class Detail extends Page {
                     title: '我在美途旅旅发现了很赞的旅行线路, 快看看~~~', // 分享标题
                     desc: detailData.LineName, // 分享描述
                     link: location.href, // 分享链接
-                    imgUrl: rs.Data.Infos.LinePicList && rs.Data.Infos.LinePicList[0].PicturePath || 'http://s4.lvlv.io/static/images/green-logo.887c9c7.png', // 分享图标
+                    imgUrl: rs.Data.Infos.LinePicList[0] && rs.Data.Infos.LinePicList[0].PicturePath, // 分享图标
                 });
             })
             this.setState({
