@@ -2,7 +2,7 @@
 .cal-container ul{list-style:none;margin:0;padding:0;}
 .cal-container li{display:inline-block;width:14.28%;text-align:center;}
 .cal-container .cal-week{font-size:14px;}
-.cal-views{}
+.cal-views{background:white}
 .cal-view{}
 .cal-title{font-size:16px;font-weight:normal;text-align:center;line-height:34px;}
 .cal-weeks{background:#efefef;text-align:center;border-bottom:1px solid #ddd;color:#aaa}
