@@ -13,14 +13,18 @@ export default class Booking extends Page {
     headerview = {
         title: '旅行预约'
     }
-    componentWillMount(){
-        // priceCalendarData.clear();
+    constructor(){
+        super();
         this.state = {
             contact: '',
             mobile: '',
             childQuantity: 0,
             adultQuantity: 0
         }
+    }
+    componentWillMount(){
+        // priceCalendarData.clear();
+
     }
     validate(){
         return Validator.isMobile(this.state.mobile) && Validator.isNotEmpty(this.state.contact) && priceCalendarData;
@@ -30,6 +34,9 @@ export default class Booking extends Page {
 
         if(this.validate()){
             this.showLoading();
+            let adultPrice = this.dayPrice.CostPrice>0 ? this.dayPrice.CostPrice :  this.dayPrice.Price,
+                childPrice = this.dayPrice.ChildPrice;
+
             Model.post('/sharedline/create',{
                 contacts: {
                     name: this.state.contact,
@@ -37,8 +44,11 @@ export default class Booking extends Page {
                 },
                 orderInfo: {
                     productID: this.props.location.state.data.LineID,
-                    childQuantity: this.state.childQuantity,
-                    adultQuantity: this.state.adultQuantity,
+                    amount: childPrice * Number(this.state.childQuantity) + adultPrice* Number(this.state.adultQuantity),
+                    childPrice: childPrice,
+                    adultPrice: adultPrice,
+                    childCount: this.state.childQuantity,
+                    adultCount: this.state.adultQuantity,
                     travelStartDate: Object.keys(priceCalendarData.getItem('selectedDay'))[0],
                 },
                 requestAuth: {
@@ -67,7 +77,8 @@ export default class Booking extends Page {
             detailData = passedState && passedState.data,
             daystr = selectedDayData && Object.keys(selectedDayData)[0],
             dayinfo = selectedDayData && selectedDayData[daystr] || {}
-        
+
+        this.dayPrice = dayinfo;
         return this.create(
             detailData && detailData.LinePicList ?
             <div>

@@ -38,13 +38,18 @@ export default class CalendarPrice extends Page {
     }
     getList(){
         var period = this.getPeriod();
+        this.showLoading();
         Model.post('/sharedline/getlineair',{
             lineid: this.props.params.id,
             ...period
+        },{
+            useSecureCode: true
         }).then((rs)=>{
+
             this.setState({
                 data: rs.Data.Infos
-            })
+            });
+            this.hideLoading();
         });
     }
     selectDay(daystr){
