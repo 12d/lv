@@ -15,12 +15,13 @@ export default class Booking extends Page {
     }
     constructor(){
         super();
-        this.state = {
-            contact: '',
-            mobile: '',
-            childQuantity: 0,
-            adultQuantity: 0
-        }
+        // router router回退也会触发constructor/componentWillMount/didMount, 如果有this.state={},会导致dom元素和内存的state不一致
+        // this.state = {
+        //     contact: '',
+        //     mobile: '',
+        //     childQuantity: 0,
+        //     adultQuantity: 0
+        // }
     }
     componentWillMount(){
         // priceCalendarData.clear();
