@@ -27,7 +27,7 @@ export default class Index extends Page {
     componentDidMount(){
         this.showLoading();
 
-        if(!UserHelper.isLogin){
+        if(!UserHelper.isLogin()){
             this.forward('/login');
             return;
         }

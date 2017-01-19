@@ -25,7 +25,7 @@ export default class UserHelper {
     static isLogin(){
         var user = userStore.getItem();
 
-        return user && user.auth;
+        return user && user.data.auth;
     }
     static getUser(){
         var user = userStore.getItem();
