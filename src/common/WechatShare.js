@@ -32,6 +32,11 @@ export default class Share {
 
         this._listeners = {}
     }
+    getDeviceInfo(){
+        return {
+
+        }
+    }
     ready(callback){
         // var sdkPromise = new Promise((resolve, reject)=>{
         //     wx.ready((rs)=>{
@@ -122,8 +127,15 @@ export default class Share {
         return this;
     }
     on(type, success, cancel){
-        this._listeners[type+'_success'] = success;
-        this._listeners[type+'_fail'] = fail;
+        if(type==='all'){
+            for(let api in apis){
+                this.on(api,success, cancel)
+            }
+            return this;
+        }
+        success && (this._listeners[type+'_success'] = success);
+        cancel && (this._listeners[type+'_cancel'] = cancel);
+
         return this;
     }
     static getInstance(){

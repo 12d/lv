@@ -36,15 +36,12 @@ class Page extends Component {
     }
 
     /**
-     * 获取jsbundle中queryString中的参数
-     * @param key
-     */
-    /**
-     * 获取jsbundle中queryString中的参数
+     * 获取url中queryString中的参数
      * @param key
      */
     getParams(key:string) {
-        return key ? this.props&&this.props.params&&this.props.params[key] : this.props.params
+        var params = {...this.props.params, ...this.props.location.query}
+        return key ? params[key] : params
     }
 
     /**

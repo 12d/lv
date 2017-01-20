@@ -3,7 +3,7 @@ import React,{
 } from 'react';
 import {Link } from 'react-router'
 import Page from '../common/Page';
-const DEFAULT_IMAGE = 'placeholder.png';
+const DEFAULT_IMAGE = 'http://www.meitu.io//static/images/noimg.png';
 import '../css/product.css';
 export default class ProductItem extends Component {
     constructor(){
@@ -16,7 +16,7 @@ export default class ProductItem extends Component {
             <li className="mui-table-view-cell mui-media mui-card custom-list">
                 <span className="line-typename">{data.LineTypeName}</span>
                 <Link to={"/product/"+data.LineID} className="custom-list-content">
-                    <img className="mui-media-object mui-pull-left list-img" src={imgSRC}/>
+                    <img src={imgSRC} className="mui-media-object mui-pull-left list-img"/>
                     <div className="mui-media-body product-name product-list-name">
                         <span className="from-city">[{data.FromCityName}出发]</span>{data.LineName}
                     </div>

@@ -19,7 +19,7 @@ body,.mui-table-view-divider{background: #ECF0F1;font-size:15px;color:#555;font-
 .app-icon{height:18px;width:18px;}
 .no-margin-no-radius{border-radius: 0px;margin: 0;}
 .normal-order-list{list-style: none;padding:0}
-.mui-table-view .list-img{width:85px;max-width:85px; height:65px}
+.mui-table-view .list-img{width:85px;max-width:85px; height:85px}
 .theme-font{color:#1DA179}
 .tiny-font{font-size: 14px;line-height: 18px;}
 .large-font{font-size: 18px;}

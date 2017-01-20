@@ -7,7 +7,7 @@
 import React,{
     Component
 } from 'react';
-import {Page, ImageSlider, Model,HTMLText,NormalError,Store,Prompt,Util,Bridge} from '../common/lv';
+import {Page, ImageSlider, Model,HTMLText,NormalError,Store,Prompt,Util,Bridge,Spy,Toast} from '../common/lv';
 import {Link } from 'react-router';
 import DayRouter from './DayRouter';
 var priceCalendarData = new Store('KEY_PRICE_CALENDAR');
@@ -74,24 +74,30 @@ export default class Detail extends Page {
 
     }
     componentWillMount(){
-        console.log('will amount')
-        // var initial = this.getInitialState();
-
         this.state = {
             data: this.getInitialData()
         }
 
+    }
+    sharedHandler(){
+        Toast.show('分享成功');
+        Spy.send({
+            token: btoa((+new Date)+this.getParams('owner')),
+            owner: parseInt(this.getParams('owner')),
+            pids: [this.getParams('id')]
+        })
     }
     getDetail(){
         Detail.prefetch(this.props.params).then((rs)=>{
             var detailData = rs.Data.Infos||{};
             this.wechatReady(()=>{
                 this.wechat.share({
-                    title: '我在美途旅旅发现了很赞的旅行线路, 快看看~~~', // 分享标题
+                    title: this.getParams('sharetitle')||'我在美途旅旅发现了很赞的旅行线路, 快看看~~~', // 分享标题
                     desc: detailData.LineName, // 分享描述
                     link: location.href, // 分享链接
                     imgUrl: rs.Data.Infos.LinePicList[0] && rs.Data.Infos.LinePicList[0].PicturePath, // 分享图标
                 });
+                this.wechat.on('all', this.sharedHandler.bind(this))
             })
             this.setState({
                 data: rs,

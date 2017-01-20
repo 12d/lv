@@ -5,7 +5,7 @@
 import React,{
     Component
 } from 'react';
-import {Page, HTMLText} from '../common/lv';
+import {Page, HTMLText,NormalError} from '../common/lv';
 import '../css/product.css';
 export default class ProductFeatures extends Page {
     headerview = {
@@ -18,7 +18,9 @@ export default class ProductFeatures extends Page {
         var passedState = this.props.location.state;
 
         return this.create(
-            <HTMLText html={passedState && passedState.features} style={{padding:10}}/>
+            passedState.features ?
+                <HTMLText html={passedState && passedState.features} style={{padding:10}}/>
+                : <NormalError msg="亲, 暂时没有数据"/>
         )
     }
 }

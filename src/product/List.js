@@ -7,7 +7,7 @@ import React,{
 } from 'react';
 
 import ProductItem from './ProductItem';
-import {Model,Page,Prompt,Store,NormalError} from '../common/lv';
+import {Model,Page,Prompt,Store,NormalError,Toast,Spy} from '../common/lv';
 var secureCodeStore = new Store('SECURE_CODE');
 var pageInstance;
 var visitedTagStore = new Store('VISITED_TAG',{},{lifetime: '1D'});
@@ -46,6 +46,14 @@ export default class Index extends Page {
         }
         this.urlQuery = this.props.location.query;
     }
+    sharedHandler(){
+        Toast.show('分享成功');
+        Spy.send({
+            token: btoa((+new Date)+this.getParams('owner')),
+            owner: parseInt(this.getParams('owner')),
+            pids: this.getParams('id').split(',')
+        })
+    }
     getList(){
         Index.prefetch({},this.props).then((rs)=>{
             var listInfos = rs.Data.Infos,
@@ -53,11 +61,12 @@ export default class Index extends Page {
 
             firstLine && this.wechatReady(()=>{
                 this.wechat.share({
-                    title: '我在美途旅旅发现了很赞的旅行线路, 快看看~~', // 分享标题
+                    title: this.getParams('sharetitle')||'我在美途旅旅发现了很赞的旅行线路, 快看看~~~', // 分享标题
                     desc: '\"'+firstLine.LineName+'\"等'+listInfos.List.length+'条精美线路', // 分享描述
                     link: location.href, // 分享链接
                     imgUrl: firstLine.LinePicList[0] && firstLine.LinePicList[0].PicturePath, // 分享图标
                 });
+                this.wechat.on('all', this.sharedHandler.bind(this))
             })
             this.setState({
                 data: rs
