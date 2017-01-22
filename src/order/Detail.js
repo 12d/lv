@@ -89,7 +89,7 @@ export default class Detail extends Page {
                     <ul className="mui-table-view ">
                         <li className="mui-table-view-cell">
                             <span className="mui-pull-left normal-font">订单编号&nbsp;{data.OrderNo}</span>
-                            <span className="mui-pull-right normal-font">{data.DataChangeCreateTimeString} <span className="tiny-font gray-font">预定</span></span>
+                            <span className="mui-pull-right normal-font">{data.DataChangeCreateTimeString.substr(5)} <span className="tiny-font gray-font">预定</span></span>
                         </li>
                         <li className="mui-table-view-cell">
                             <a href="#account" className="mui-navigate-right mui-pull-left">订单总额</a>
