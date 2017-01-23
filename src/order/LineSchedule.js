@@ -7,6 +7,7 @@ import React,{
 } from 'react';
 import '../css/order.css';
 import {Model, Page, NormalError} from '../common/lv';
+import DayRouter from '../product/DayRouter';
 export default class Detail extends Page {
     constructor(){
         super()
