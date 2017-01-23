@@ -8,7 +8,7 @@ import { Router, IndexRoute, Route, browserHistory,match} from 'react-router';
 match({ routes:routes,  location: location.href }, (error, redirectLocation, renderProps) => {
     ReactDOM.render(
         routes,
-        document.getElementById('app-container')
+        document.getElementById('app')
     )
 })
 

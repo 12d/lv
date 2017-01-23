@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, IndexRoute, Route, browserHistory} from 'react-router';
+import App from './common/App';
 // import OrderList from './order/List';
 // import OrderDetail from './order/Detail';
 //
@@ -58,21 +59,23 @@ function loadBooking(nextState, callback){
         },'booking')
 }
 export default (
-    <Router history={browserHistory}>
-        <Route path='/login' getComponent={loadLogin}/>
-        <Route path='/order' getComponent={loadOrderList}/>
-        <Route path='/order/list' getComponent={loadOrderList}/>
-        <Route path='/order/:id' getComponent={loadOrderDetail}/>
-        <Route path='/order/:id/schedule' getComponent={loadLineSchedule}/>
-        <Route path='/product/' getComponent={loadProductList}/>
-        <Route path='/product/list' getComponent={loadProductList}/>
-        <Route path='/product/:id' getComponent={loadProductDetail}/>
-        <Route path='/product/:id/features' getComponent={loadProductFeatures}/>
-        <Route path='/product/:id/pricecalendar' getComponent={loadPriceCalendar}/>
+    <App>
+            <Router history={browserHistory}>
+                <Route path='/login' getComponent={loadLogin}/>
+                <Route path='/order' getComponent={loadOrderList}/>
+                <Route path='/order/list' getComponent={loadOrderList}/>
+                <Route path='/order/:id' getComponent={loadOrderDetail}/>
+                <Route path='/order/:id/schedule' getComponent={loadLineSchedule}/>
+                <Route path='/product/' getComponent={loadProductList}/>
+                <Route path='/product/list' getComponent={loadProductList}/>
+                <Route path='/product/:id' getComponent={loadProductDetail}/>
+                <Route path='/product/:id/features' getComponent={loadProductFeatures}/>
+                <Route path='/product/:id/pricecalendar' getComponent={loadPriceCalendar}/>
 
-        <Route path='/product/booking/:id' getComponent={loadBooking}/>
+                <Route path='/product/booking/:id' getComponent={loadBooking}/>
 
-    </Router>
+            </Router>
+    </App>
 )
 
 

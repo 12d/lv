@@ -50,5 +50,8 @@ module.exports = {
     },
     get UserHelper(){
         return require('./UserHelper').default
+    },
+    get App(){
+        return require('./App').default
     }
 }
