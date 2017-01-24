@@ -49,6 +49,7 @@ export default class Index extends Page {
     sharedHandler(){
         Toast.show('分享成功');
         Spy.send({
+	    storeid: this.getParams('storeid'),
             token: btoa((+new Date)+this.getParams('owner')),
             owner: parseInt(this.getParams('owner')),
             pids: this.getParams('id').split(',')
