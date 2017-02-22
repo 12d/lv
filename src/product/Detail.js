@@ -30,7 +30,8 @@ export default class Detail extends Page {
     }
     static prefetch(params){
         return Model.post('/sharedline/getlinedetail', {
-            lineid: params.id
+            lineid: params.id,
+            owner: params.owner
         },{
             useSecureCode: true
         })
@@ -213,7 +214,7 @@ export default class Detail extends Page {
                 {
                     data ?
                         <div className="mui-bar-footer action-btns">
-                            <button className="mui-btn mui-btn-default mui-col-xs-4" onClick={()=>{Bridge.callPhone('15618870543')}}><span className="mui-icon mui-icon-phone"></span>联系客服</button>
+                            <button className="mui-btn mui-btn-default mui-col-xs-4" onClick={()=>{Bridge.callPhone(data.Sales.Tel)}}><span className="mui-icon mui-icon-phone"></span>联系客服</button>
                             <Link to={{
                                 pathname:"/product/booking/"+data.LineID,
                                 state: {
