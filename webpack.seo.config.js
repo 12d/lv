@@ -60,12 +60,16 @@ module.exports = {
                 loader: ExtractTextPlugin.extract("style-loader", "css-loader")
             },{
                 test: /\.png$/,
-                loader: 'url?limit=10000000&mimetype=image/png',
+                loader: 'url?limit=8192&mimetype=image/png',
                 include: [process.cwd()],
             }, {
                 test: /\.jpg$/,
-                loader: 'url?limit=10000000&mimetype=image/jpg',
+                loader: 'url?limit=8192&mimetype=image/jpg',
                 include: [process.cwd()]
+            },
+            {
+                test   : /\.woff|\.woff2|\.svg|.eot|\.ttf/,
+                loader : 'file?prefix=fonts'
             }]
     }
 };
