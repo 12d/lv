@@ -19,8 +19,8 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         filename:  "[name].entry.js",
-        chunkFilename: "[name].[hash:8].js",
-        publicPath: 'http://s1.lvlv.io/h5/'
+        chunkFilename: "[name].[chunkhash:8].js",
+        publicPath: '/'
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -38,7 +38,7 @@ module.exports = {
         // }),
 
 
-        new webpack.optimize.CommonsChunkPlugin({name: "libs", filename: "[name].[hash:8].js", chunks: ['libs']}),
+        new webpack.optimize.CommonsChunkPlugin({name: "libs", filename: "[name].[chunkhash:8].js", chunks: ['libs']}),
         new ExtractTextPlugin('css/[name].[contenthash:4].css',{allChunks: true, disable: false}),
         //允许错误不打断程序
         new webpack.NoErrorsPlugin(),
