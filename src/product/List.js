@@ -168,12 +168,18 @@ export default class Index extends Page {
         mui.destruct()
     }
     componentDidMount(){
-        !(this.state.data.Data && this.state.data.Data.Infos) && (this.showLoading(), this.getList());
+        // !(this.state.data.Data && this.state.data.Data.Infos) && (this.showLoading(), this.getList());
+        if(this.state.data.Data && this.state.data.Data.Infos){
+            this.initPullRefrech();
+        }else{
+            this.showLoading();
+            this.getList();
+        }
     }
     render(){
         var data = this.state.data && this.state.data.Data&& this.state.data.Data.Infos;
         return this.create(
-            data && data.List.length
+            data && data.List && data.List.length
                 ?
                 <div id="pullrefresh" className="mui-content mui-scroll-wrapper">
                     <div className="mui-scroll">
