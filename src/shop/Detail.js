@@ -59,11 +59,31 @@ export default class Index extends Page {
             sort:'2_1',
             travelstoreid: this.props.params.id
         },{useAuth:false}).then((rs)=>{
+
             this.setState({
                 hotlines: rs.Data.Infos.List
-            })
+            });
+
+            this.wechatReady(()=> {
+                this.wechat.share({
+                    title: this.getParams('sharetitle') || '我在美途旅旅发现了一家很赞的旅行社微门店', // 分享标题
+                    desc: rs.Data.Infos.Title+"微门店店铺首页", // 分享描述
+                    link: location.href, // 分享链接
+                    imgUrl: rs.Data.Infos.LogoUrl, // 分享图标
+                });
+                this.wechat.on('all', this.sharedHandler.bind(this))
+            });
         }).catch(()=>{
             this.getHotlinesFail()
+        })
+    }
+    sharedHandler(){
+        Toast.show('分享成功');
+        Spy.send({
+            storeid: this.getParams('storeid'),
+            token: btoa((+new Date)+this.getParams('owner')),
+            owner: parseInt(this.getParams('owner')),
+            pids: this.getParams('id').split(',')
         })
     }
     getStats(shopID){
@@ -88,10 +108,10 @@ export default class Index extends Page {
     render(){
         var data = this.state.data.Data,
             stats = data && data.Infos || {};
-        console.log(stats)
+
         return this.create(
             <div>
-                <div className="mui-scroll mui-content" style={{marginBottom:60}}>
+                <div className="mui-scroll mui-content" >
                     <ImageSlider style={{height:120}} data={[{"pictureID":0,"PictureName":"","PicturePath":stats.BannerUrl}]}/>
 
                     <div className="mui-table-view page-section shop-info">

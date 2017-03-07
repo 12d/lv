@@ -6157,7 +6157,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
             if (target.parentNode && target.parentNode.classList && target.parentNode.classList.contains(CLASS_SEGMENTED_CONTROL_VERTICAL)) {
                 //vertical 如果preventDefault会导致无法滚动
             } else {
-                event.preventDefault(); //stop hash change
+                //event.preventDefault(); //stop hash change #此处导致点击事件无效
             }
             //			if (target.hash) {
             return target;

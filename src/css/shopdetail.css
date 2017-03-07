@@ -13,4 +13,5 @@
 .hotline-title a{color:#8d8d8d}
 .hotline-title a:hover{color:#1DA179}
 .app-page-container .hotline-list{background-color: rgb(230, 230, 233)}
+.hotline-list{margin-bottom: 60px;}
 .hotline-list .custom-list{border:none;margin-bottom: 1px;}

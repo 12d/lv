@@ -92,6 +92,7 @@ export default class Index extends Page {
 
                 setTimeout(()=>{
                     // debugger
+                    this.initPullRefrech();
                     var pullRefresh = mui('#pullrefresh').pullRefresh();
                     //重置滚动条
                     (!params||params.pagesize==1) &&pullRefresh.refresh(true);
@@ -101,7 +102,7 @@ export default class Index extends Page {
                 },100)
             });
 
-                this.initPullRefrech();
+
 
             this.hideLoading();
             this.needShowPromotion() && this.showPromotion();
@@ -169,7 +170,7 @@ export default class Index extends Page {
     }
     componentDidMount(){
         // !(this.state.data.Data && this.state.data.Data.Infos) && (this.showLoading(), this.getList());
-        if(this.state.data.Data && this.state.data.Data.Infos){
+        if(this.state.data &&this.state.data.Data && this.state.data.Data.Infos){
             this.initPullRefrech();
         }else{
             this.showLoading();

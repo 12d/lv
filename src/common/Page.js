@@ -51,8 +51,26 @@ class Page extends Component {
     getEnv(key:string) {
         return key ? this.context.env[key] : this.context.env;
     }
+
+    /**
+     * 阅后即焚读取初始化数据
+     * @returns {Array}
+     */
     getInitialData(){
-        return typeof window=='undefined' ? this.props.location.state : window.__INITIAL_STATE__
+        var data;
+        // return typeof window=='undefined' ? this.props.location.state : window.__INITIAL_STATE__;
+        if(this.__initialData){
+            return this.__initialData;
+        }
+        if(typeof window=='undefined'){
+            data = this.props.location.state;
+        }else{
+            data = Object.assign({}, window.__INITIAL_STATE__);
+            window.__INITIAL_STATE__ = null;
+
+        }
+        this.__initialData = data;
+        return data;
     }
     // getInitialState(){
     //     return window.__INITIAL_STATE__;
