@@ -38,6 +38,8 @@ module.exports = {
 	
         new webpack.optimize.UglifyJsPlugin({
             compress: {
+                drop_debugger: true,
+                drop_console: true,
                 //supresses warnings, usually from module minification
                 warnings: false
             }
