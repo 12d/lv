@@ -104,7 +104,7 @@ export default class Share {
                     config = Object.assign({},config);
                     //如果是朋友圈,默认标题是title+desc
                     if(type==='timeline'){
-                        config.title = '美途线路推荐:'+config.desc;
+                        config.title = '美途旅行推荐:'+config.desc;
                     }
                     if(!config.imgUrl) config.imgUrl=require("../assets/green-logo.png")
                 }
