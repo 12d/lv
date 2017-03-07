@@ -25,7 +25,7 @@ class Model {
         /**
          * 是否请求中带auth, 默认true
          */
-        this.useAuth = options.useAuth === false;
+        this.useAuth =  false;
             // super();
             /**
              * 数据请求url, 必填

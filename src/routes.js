@@ -58,6 +58,11 @@ function loadBooking(nextState, callback){
                 callback(null, require('./product/Booking').default);
         },'booking')
 }
+function loadShop(nextState, callback){
+    require.ensure(['./shop/Detail'], function(require){
+        callback(null, require('./shop/Detail').default);
+    },'shopdetail')
+}
 export default (
     <App>
             <Router history={browserHistory}>
@@ -71,9 +76,8 @@ export default (
                 <Route path='/product/:id' getComponent={loadProductDetail}/>
                 <Route path='/product/:id/features' getComponent={loadProductFeatures}/>
                 <Route path='/product/:id/pricecalendar' getComponent={loadPriceCalendar}/>
-
                 <Route path='/product/booking/:id' getComponent={loadBooking}/>
-
+                <Route path='/shop/:id' getComponent={loadShop}/>
             </Router>
     </App>
 )

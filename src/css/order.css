@@ -34,3 +34,4 @@
 .mui-scroll .booking-succss {color:green;background:#edfdef}
 .order-list-container .mui-card{border-right:none;border-left:none;}
 .order-list-container{background:transparent}
+.order-list-container .custom-list{padding: 8px;margin:0 0 5px 0;}

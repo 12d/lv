@@ -3,6 +3,6 @@ export default {
         appId: 'wx7b2ca4b94a1ff071',
         appSecret: ''
     },
-    baseModelUrl: 'http://192.168.0.29/',
+    baseModelUrl: 'http://meitu.s1.natapp.cc/',
     logServer: '/sharedline/AddWXShareLog'
 }

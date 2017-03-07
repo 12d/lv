@@ -1930,6 +1930,10 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
      * 单页配置 初始化
      * @param {object} options
      */
+    $.destruct = function(){
+        inits = {}
+        isInitialized = false
+    }
     $.init = function(options) {
         isInitialized = true;
         $.options = $.extend(true, $.global, options || {});
@@ -4378,7 +4382,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
         _start: function(e) {
             //仅下拉刷新在start阻止默认事件
             if (e.touches && e.touches.length && e.touches[0].clientX > 30) {
-                e.target && !this._preventDefaultException(e.target, this.options.preventDefaultException) && e.preventDefault();
+                // e.target && !this._preventDefaultException(e.target, this.options.preventDefaultException) && e.preventDefault();
             }
             if (!this.loading) {
                 this.pulldown = this.pullPocket = this.pullCaption = this.pullLoading = false
@@ -4455,6 +4459,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
             callback && callback.call(this);
         },
         endPullupToRefresh: function(finished) {
+
             var self = this;
             if (self.bottomPocket) { // && self.loading && !this.pulldown
                 self.loading = false;
@@ -4465,9 +4470,10 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
                     //					self.bottomPocket.classList.add(CLASS_HIDDEN);
                     self.wrapper.removeEventListener('scrollbottom', self);
                 } else {
+                    // debugger
                     self._setCaption(self.options.up.contentdown);
                     //					setTimeout(function() {
-                    self.loading || self.bottomPocket.classList.remove(CLASS_VISIBILITY);
+                    // self.loading || self.bottomPocket.classList.remove(CLASS_VISIBILITY);
                     //					}, 300);
                 }
             }

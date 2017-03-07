@@ -51,9 +51,6 @@ class Page extends Component {
     getEnv(key:string) {
         return key ? this.context.env[key] : this.context.env;
     }
-    showLoading(container){
-
-    }
     getInitialData(){
         return typeof window=='undefined' ? this.props.location.state : window.__INITIAL_STATE__
     }

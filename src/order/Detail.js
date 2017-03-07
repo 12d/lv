@@ -6,7 +6,7 @@ import React,{
     Component
 } from 'react';
 import {Link} from 'react-router';
-import {Page, Model,Bridge} from '../common/lv';
+import {Page, Model,Bridge,NormalError} from '../common/lv';
 import '../css/order.css';
 var weeksStr = ['日','一','二','三','四','五','六'];
 function paddingStr(str){
@@ -50,7 +50,6 @@ export default class Detail extends Page {
             orderID: this.props.params.id
         }).then(rs=>{
             this.hideLoading();
-            console.log('refer',refer)
             this.setState({
                 data: rs.Data.Infos||{},
                 refer
@@ -68,7 +67,7 @@ export default class Detail extends Page {
             startDateInfo = getDateStr(data.TravelStartDateString);
             endDateInfo = getDateStr(data.TravelEndDateString)
         }
-
+      
         return this.create(
                 data ?
                 <div className="mui-scroll">
@@ -135,7 +134,7 @@ export default class Detail extends Page {
                             </a>
                         </li>
                         <li className="mui-table-view-cell">
-                            <a href="#account">出行人
+                            <a href="#">出行人
                                 <span className="mui-pull-right field-value">{data.ContactName}等{data.AdultCount+data.ChildCount}人</span>
                             </a>
 
@@ -143,16 +142,16 @@ export default class Detail extends Page {
                         <li className="mui-table-view-cell">
                             <Link to={"/order/"+this.props.params.id+"/schedule"} className="mui-navigate-right">行程安排</Link>
                         </li>
-                        <li className="mui-table-view-cell" style="display:none">
+                        <li className="mui-table-view-cell" style={{display:'none'}}>
                             <a href="#account" className="mui-navigate-right">交通/住宿</a>
                         </li>
                     </ul>
                     <div style={{margin: '10px'}}>
-                        <button onClick={()=>Bridge.callPhone(15618870543)} className="mui-btn mui-btn-block theme-font" style={{padding: '10px 0',borderRadius:0}}><span style={{fontSize:24}} className="mui-icon mui-icon-phone"></span>联系客服</button>
+                        <button onClick={()=>Bridge.callPhone(data.SalesUserTel)} className="mui-btn mui-btn-block theme-font" style={{padding: '10px 0',borderRadius:0}}><span style={{fontSize:24}} className="mui-icon mui-icon-phone"></span>联系客服</button>
                     </div>
                 </div>
                 :
-                null
+                <NormalError msg="没有查询到数据"/>
         )
     }
 }

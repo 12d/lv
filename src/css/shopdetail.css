@@ -1,0 +1,16 @@
+.shop-info .shop-logo {
+    height: 70px;
+    width: 70px;
+    box-shadow: 0px 0px 1px #c8c7cc;
+    padding: 2px;
+}
+.shop-name{font-size:22px; color: #1DA179;}
+.shop-desc{padding-top:8px; clear:both;color:#666;}
+.shop-info{padding-top:10px;padding:10px}
+.shop-data{font-size: 14px; color: #555; margin-top: 10px;}
+.shop-verified{font-size: 18px; color: orange; font-weight: bold; font-family: initial;margin-left:5px;font-style: italic; }
+.hotline-title{margin:10px;}
+.hotline-title a{color:#8d8d8d}
+.hotline-title a:hover{color:#1DA179}
+.app-page-container .hotline-list{background-color: rgb(230, 230, 233)}
+.hotline-list .custom-list{border:none;margin-bottom: 1px;}

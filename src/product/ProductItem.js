@@ -15,17 +15,16 @@ export default class ProductItem extends Component {
         return (
             <li className="mui-table-view-cell mui-media mui-card custom-list">
                 <span className="line-typename">{data.LineTypeName}</span>
-                <Link to={"/product/"+data.LineID} className="custom-list-content">
+                <div onClick={()=>Page.forward("/product/"+data.LineID)} className="custom-list-content">
                     <img src={imgSRC} className="mui-media-object mui-pull-left list-img"/>
                     <div className="mui-media-body product-name product-list-name">
                         <span className="from-city">[{data.FromCityName}出发]</span>{data.LineName}
                     </div>
                     <p className="product-spotlight">{data.RecommendReason}</p>
-                </Link>
-                <div className="order-agent gray-font ">
-                    <span>{data.TravelStoreName}</span>
                     <span className="order-price-wrap"><span className="order-price">￥{data.LowestCostPrice>0 ? data.LowestCostPrice: data.LowestPrice}</span>{data.LowestCostPrice>0?'批发价':'起'}</span>
+                    <span className="order-total">已售&nbsp;981</span>
                 </div>
+
             </li>
         )
     }

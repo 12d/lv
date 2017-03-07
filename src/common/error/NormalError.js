@@ -10,7 +10,7 @@ import React, {
 export default class NormalError extends Component {
     render(){
         return (
-            <div style={!this.props.global?{position:'relative'}:{}}>
+            <div style={!this.props.global?{position:'relative',height:200}:{}}>
                 <div className="error-container">
                     <div className="error-content">
                         <span className="mui-icon mui-icon-loop"></span>

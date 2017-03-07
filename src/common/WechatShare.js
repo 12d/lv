@@ -94,12 +94,7 @@ export default class Share {
     share(shareData){
         wx.ready(()=>{
             var config,
-                self = this,
-                timelineConfig,
-                sessionConfig,
-                qqConfig,
-                qzoneConfig,
-                defaultConfig;
+                self = this;
 
             for(let type in apis){
                 config = shareData[type];
