@@ -7,7 +7,7 @@ import React,{
 } from 'react';
 
 import ProductItem from './ProductItem';
-import IScroll from '../libs/iscroll/iscroll-lite';
+// import IScroll from '../libs/iscroll/iscroll-lite';
 import {Model,Page,Prompt,Store,NormalError,Toast,Spy} from '../common/lv';
 var secureCodeStore = new Store('SECURE_CODE');
 var pageInstance;

@@ -21,10 +21,9 @@ export default class ProductItem extends Component {
                         <span className="from-city">[{data.FromCityName}出发]</span>{data.LineName}
                     </div>
                     <p className="product-spotlight">{data.RecommendReason}</p>
-                    <span className="order-price-wrap"><span className="order-price">￥{data.LowestCostPrice>0 ? data.LowestCostPrice: data.LowestPrice}</span>{data.LowestCostPrice>0?'批发价':'起'}</span>
-                    <span className="order-total">已售&nbsp;981</span>
                 </div>
-
+                <span className="order-price-wrap"><span className="order-price">￥{data.LowestCostPrice>0 ? data.LowestCostPrice: data.LowestPrice}</span>{data.LowestCostPrice>0?'批发价':'起'}</span>
+                <span className="order-total">已售&nbsp;{data.SalesVolume||0}</span>
             </li>
         )
     }
