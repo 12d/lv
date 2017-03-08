@@ -3463,7 +3463,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
                 startY: 0, //初始化时滚动至y
 
                 indicators: true, //是否显示滚动条
-                stopPropagation: false,
+                stopPropagation: true,
                 hardwareAccelerated: true,
                 fixedBadAndorid: false,
                 preventDefaultException: {
@@ -3630,6 +3630,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
             };
         },
         _initEvent: function(detach) {
+
             var action = detach ? 'removeEventListener' : 'addEventListener';
             window[action]('orientationchange', this);
             window[action]('resize', this);
@@ -3650,7 +3651,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
             if (segmentedControl) { //靠，这个bug排查了一下午，阻止hash跳转，一旦hash跳转会导致可拖拽选项卡的tab不见
                 mui(segmentedControl)[detach ? 'off' : 'on']('click', 'a', $.preventDefault);
             }
-
+            // debugger
             this.wrapper[action]('scrollstart', this);
             this.wrapper[action]('refresh', this);
         },
@@ -3677,32 +3678,48 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 
             switch (e.type) {
                 case $.EVENT_START:
+                    console.log(this.__isScrolling,'this.__isScrolling ');
+                    e.preventDefault();
+                    this.delayClickTimer = setTimeout(()=>{
+                        e.target.click()
+                    },100);
                     this._start(e);
                     break;
                 case 'drag':
+                    clearTimeout(this.delayClickTimer);
+                    // debugger
+                    e.preventDefault();
                     this.options.stopPropagation && e.stopPropagation();
                     this._drag(e);
                     break;
                 case 'dragend':
                 case 'flick':
+                    // e.preventDefault();
+                    console.log('dragend')
                     this.options.stopPropagation && e.stopPropagation();
                     this._flick(e);
                     break;
                 case $.EVENT_CANCEL:
                 case $.EVENT_END:
+                    console.log($.EVENT_END)
                     this._end(e);
                     break;
                 case 'webkitTransitionEnd':
                     this.transitionTimer && this.transitionTimer.cancel();
                     this._transitionEnd(e);
+                    console.log('webkitTransitionEnd')
                     break;
                 case 'scrollstart':
                     this._handleIndicatorScrollstart(e);
+                    this.__isScrolling = true;
+                    console.log('scrollstart')
                     break;
                 case 'scrollend':
                     this._handleIndicatorScrollend(e);
                     this._scrollend(e);
-                    e.stopPropagation();
+                    // e.stopPropagation();
+                    this.__isScrolling = false;
+                    console.log('scrollend')
                     break;
                 case 'orientationchange':
                 case 'resize':

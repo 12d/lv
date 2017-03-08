@@ -7,6 +7,7 @@ import React,{
 } from 'react';
 
 import ProductItem from './ProductItem';
+import IScroll from '../libs/iscroll/iscroll-lite';
 import {Model,Page,Prompt,Store,NormalError,Toast,Spy} from '../common/lv';
 var secureCodeStore = new Store('SECURE_CODE');
 var pageInstance;
@@ -89,7 +90,8 @@ export default class Index extends Page {
             this.setState({
                 data: rs
             },()=>{
-
+                // new IScroll('#wrapper');
+                // return;
                 setTimeout(()=>{
                     // debugger
                     this.initPullRefrech();
@@ -182,7 +184,7 @@ export default class Index extends Page {
         return this.create(
             data && data.List && data.List.length
                 ?
-                <div id="pullrefresh" className="mui-content mui-scroll-wrapper">
+                <div className="mui-content mui-scroll-wrapper" id="pullrefresh">
                     <div className="mui-scroll">
             <ul className="mui-table-view product-list-container">
                 {

@@ -158,7 +158,7 @@ export default class Index extends Page {
                         </a>*/
                         }
                         <div className="mui-tab-item" onClick={()=>Bridge.callPhone(stats.Contact)}>
-                            <span className="mui-icon mui-icon-phone" style={{fontSize:22}}></span>
+                            <span className="mui-icon mui-icon-phone" style={{fontSize:27}}></span>
                             <span className="mui-tab-label">联系我们</span>
                         </div>
                         <div onClick={()=>this.goOrderList()} className="mui-tab-item">
