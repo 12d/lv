@@ -23,7 +23,7 @@ export default class ProductItem extends Component {
                     <p className="product-spotlight">{data.RecommendReason}</p>
                 </div>
                 <span className="order-price-wrap"><span className="order-price">￥{data.LowestCostPrice>0 ? data.LowestCostPrice: data.LowestPrice}</span>{data.LowestCostPrice>0?'批发价':'起'}</span>
-                <span className="order-total">已售&nbsp;{data.SalesVolume||0}</span>
+                <span className="order-total">已售&nbsp;{data.OrderPersonCount||0}</span>
             </li>
         )
     }
