@@ -92,7 +92,7 @@ export default class Index extends Page {
             },()=>{
                 // new IScroll('#wrapper');
                 // return;
-                setTimeout(()=>{
+                rs.Data.Infos && rs.Data.Infos.List.length && setTimeout(()=>{
                     // debugger
                     this.initPullRefrech();
                     var pullRefresh = mui('#pullrefresh').pullRefresh();

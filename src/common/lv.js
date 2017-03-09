@@ -53,5 +53,11 @@ module.exports = {
     },
     get App(){
         return require('./App').default
+    },
+    get Mkt(){
+        return require('./Mkt').default
+    },
+    get Image(){
+        return require('./Image').default
     }
 }

@@ -15,6 +15,7 @@ import Util from './Util';
 // import '../css/app.css';
 
 var history = browserHistory;
+
 const NOOP = ()=> {
 }
 class Page extends Component {
@@ -41,7 +42,7 @@ class Page extends Component {
      */
     getParams(key:string) {
         var params = {...this.props.params, ...this.props.location.query}
-        return key ? params[key] : params
+        return key ? params[key] : params;
     }
 
     /**

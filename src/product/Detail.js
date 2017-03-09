@@ -100,7 +100,8 @@ export default class Detail extends Page {
                     imgUrl: rs.Data.Infos.LinePicList[0] && rs.Data.Infos.LinePicList[0].PicturePath, // 分享图标
                 });
                 this.wechat.on('all', this.sharedHandler.bind(this))
-            })
+            });
+
             this.setState({
                 data: rs,
                 selectedDay: priceCalendarData.getItem('selectedDay')
@@ -129,7 +130,7 @@ export default class Detail extends Page {
 
             <div>
                 <div className="mui-scroll mui-content">
-                    <ImageSlider data={data.LinePicList}/>
+                    <ImageSlider data={data.LinePicList} cropMode="375_200x2"/>
                     <p className="departure">{data.FromCityName}&nbsp;-&nbsp;{data.ToCityName}&nbsp;</p>
                     <div className="mui-table-view page-section">
                         <h1 className="product-name">{data.LineName}</h1>
@@ -193,6 +194,17 @@ export default class Detail extends Page {
                                                         <div className="item-detail" key={"trip"+index}>
                                                             <span className="daytour-index">第{index + 1}天</span><span
                                                             className="daytour-title">{trip.TripTitle}</span>
+                                                            <p className="daytour-desc">{trip.Remark}</p>
+                                                            <dl className="daytour-food">
+                                                                <dt><span className="mui-icon-extra mui-icon-extra-cold"></span>餐饮</dt>
+                                                                <dd>早餐:&nbsp;{trip.BreakFastInfo}</dd>
+                                                                <dd>午餐:&nbsp;{trip.LunchInfo}</dd>
+                                                                <dd>晚餐:&nbsp;{trip.SuperInfo}</dd>
+                                                            </dl>
+                                                            <dl className="daytour-hotel">
+                                                                <dt><span className="mui-icon-extra mui-icon-extra-hotel"></span>住宿</dt>
+                                                                <dd>{trip.HotelInfo||"无"}</dd>
+                                                            </dl>
                                                             <DayRouter data={trip.TripDetailList}/>
                                                         </div>
                                                     )

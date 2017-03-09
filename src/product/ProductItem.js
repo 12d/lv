@@ -2,7 +2,7 @@ import React,{
     Component
 } from 'react';
 import {Link } from 'react-router'
-import Page from '../common/Page';
+import {Page, Image} from '../common/lv';
 const DEFAULT_IMAGE = 'http://www.meitu.io//static/images/noimg.png';
 import '../css/product.css';
 export default class ProductItem extends Component {
@@ -16,7 +16,7 @@ export default class ProductItem extends Component {
             <li className="mui-table-view-cell mui-media mui-card custom-list">
                 <span className="line-typename">{data.LineTypeName}</span>
                 <div onClick={()=>Page.forward("/product/"+data.LineID)} className="custom-list-content">
-                    <img src={imgSRC} className="mui-media-object mui-pull-left list-img"/>
+                    <Image src={imgSRC} className="mui-media-object mui-pull-left list-img" cropMode="100_100"/>
                     <div className="mui-media-body product-name product-list-name">
                         <span className="from-city">[{data.FromCityName}出发]</span>{data.LineName}
                     </div>

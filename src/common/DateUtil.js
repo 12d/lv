@@ -12,6 +12,11 @@ export default {
         var day = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
         return year + "-" + month + "-" + day;
     },
+    tomorrow(){
+        var temp = new Date();//today
+
+        return this.toDateStr(new Date(temp.setDate(temp.getDate()+1)));
+    },
     getFirstDateOfMonth(year, month){
         var temp;
     // debugger

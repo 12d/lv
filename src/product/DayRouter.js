@@ -22,14 +22,13 @@ export default class DayRouter extends Component {
                         this.props.data.map((item, index)=>{
                             return (
                                 <div className="route-item" key={"route"+index}><label>{item.DetailTime}</label>
-                                    <div className="route-content"><span className="item-name">{item.TripTitle}：</span>
+                                    <div className="route-content"><span className="item-name">主要景点：</span>
                                         {
                                             item.POIList.map((poi,key)=>(
                                                 <span key={"poi"+key} className="mui-badge mui-badge-default">{poi.POIName}</span>
                                             ))
                                         }
                                         <div className="item-desc"><HTMLText html={item.TripDesc}/></div>
-                                        <div className="item-tip">活动耗时：{item.TakeTime||'待定'}</div>
                                     </div>
                                 </div>
                             )

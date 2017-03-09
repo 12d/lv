@@ -6,7 +6,7 @@ import React,{
     Component
 } from 'react';
 import {Link } from 'react-router'
-import {Page,ImageSlider,Model,Toast,NormalError,Bridge} from '../common/lv';
+import {Page,ImageSlider,Model,Toast,NormalError,Bridge,Image} from '../common/lv';
 import '../css/shopdetail.css';
 import ProductItem from '../product/ProductItem';
 /**
@@ -113,11 +113,11 @@ export default class Index extends Page {
         return this.create(
             <div>
                 <div className="mui-scroll mui-content" >
-                    <ImageSlider style={{height:120}} data={[{"pictureID":0,"PictureName":"","PicturePath":stats.BannerUrl}]}/>
+                    <ImageSlider style={{height:120}} data={[{"pictureID":0,"PictureName":"","PicturePath":stats.BannerUrl}]} cropMode="375_120"/>
 
                     <div className="mui-table-view page-section shop-info">
-                        <img className="mui-media-object mui-pull-left list-img shop-logo" src={stats.LogoUrl||"http://www.meitu.io//static/images/noimg.png"}/>
-                        <h1 className="product-name shop-name">{stats.Title}<b className="shop-verified">V</b></h1><p className="shop-data"><span className="prices"><span className="stars">112 人收藏</span></span><span className="">今日收客数 {stats.OrderPersonCount}</span></p>
+                        <Image className="mui-media-object mui-pull-left list-img shop-logo" src={stats.LogoUrl||"http://www.meitu.io//static/images/noimg.png"} cropMode="100_100"/>
+                        <h1 className="product-name shop-name">{stats.Title}<b className="shop-verified">V</b></h1><p className="shop-data"><span className="prices"><span className="stars">112 人收藏</span></span><span className="">近期收客数 {stats.OrderPersonCount}</span></p>
                         <p className="shop-desc">{stats.Description}
                         </p>
                     </div>

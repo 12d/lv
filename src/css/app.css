@@ -26,7 +26,7 @@ body,.mui-table-view-divider{background: #ECF0F1;font-size:15px;color:#555;font-
 .extra-large-font{font-size: 22px;}
 .normal-font{color:#333!important;}
 .gray-font{color:#666!important;}
-.field-value{color:#8f8f94;font-size: 14px}
+.field-value{color:#767676;font-size: 14px;padding-right:14px;}
 .m-left-10{margin-left:10px}
 
 
@@ -43,10 +43,10 @@ body,.mui-table-view-divider{background: #ECF0F1;font-size:15px;color:#555;font-
 .order-agent{vertical-align: middle;position: relative;top:5px;}
 .order-agent{font-size:12px;}
 .order-price-wrap{right: 10px;}
-.order-total,.order-price-wrap{bottom: 5px;position: absolute;font-size: 12px; color: #8f8f94}
+.order-total,.order-price-wrap{bottom: 7px;position: absolute;font-size: 12px; color: #8f8f94}
 .page-section{padding:5px 15px; color:#333;background-color:white;margin-bottom:10px;}
 .m-top-10{margin-top:10px;}
-.htmltext{font-size:13px;}
+.htmltext{font-size:13px;white-space: initial}
 .htmltext img{width:100%;border: 1px solid #ccc;
     padding: 5px;
     background: white;}

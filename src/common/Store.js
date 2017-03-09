@@ -4,10 +4,10 @@
  */
 import Util from './Util';
 var lifetimeUnit = {
-    D: 86400,
-    H: 3600,
-    M: 60,
-    S: 1
+    D: 8.64e7,
+    H: 3.6e5,
+    M: 6e4,
+    S: 1e3
 };
 var REG_SPLIT_UNIT = /^(\d+)([DHMS])$/;
 class Store {
@@ -17,7 +17,7 @@ class Store {
         this._storeKey = storeKey;
 
         this._lifetime = this._calculateLifetime(lifetimeStr);
-        this._store(initialData||{},this._lifetime);
+        this._store(initialData||{});
     }
     _calculateLifetime(lifetimeStr){
         var temp = REG_SPLIT_UNIT.exec(lifetimeStr);
@@ -69,14 +69,14 @@ class Store {
             modified: +new Date
         }
     }
-    _store(data, lifetime){
+    _store(data){
         var oldData = this._restore(),
             merged;
 
         if(oldData){
             merged = this._merge(oldData, data)     ;
         }else{
-            merged = this._createStorage(data, lifetime);
+            merged = this._createStorage(data, this._lifetime);
         }
 
         this._engine.setItem(this._storeKey, JSON.stringify(merged));
@@ -89,11 +89,25 @@ class Store {
         }else{
             data[key]=value;
         }
-        this._store(data, this._lifetime);
+        this._store(data);
     }
     getItem(key){
-        var storage = this._restore();
-        return  key ? storage ? storage.data[key] : null : storage
+
+        var storage = this._restore(),
+            data;
+
+        if(typeof key==='undefined'){
+            data = storage ? storage.data : null;
+        }else{
+            data = (storage && storage.data) ? storage.data[key] : null;
+        }
+        return data;
+    }
+    mergeItems(data){
+        this._store(data);
+    }
+    clear(){
+        // this._engine.remove
     }
     static engine = ((typeof localStorage!=='undefined') ? localStorage : {
         setItem(){
@@ -171,4 +185,5 @@ class Store {
 //         }
 //     })
 // }
+
 export default Store;

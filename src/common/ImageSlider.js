@@ -8,6 +8,7 @@ import React, {
     PropTypes
 } from 'react';
 
+import Image from './Image';
 
 export default class ImageSlider extends Component {
     render(){
@@ -18,7 +19,7 @@ export default class ImageSlider extends Component {
                         this.props.data && this.props.data.length ?
                             <div className="mui-slider-item mui-slider-item-duplicate">
                                 <a href="#">
-                                    <img src={this.props.data[0].PicturePath} alt={this.props.data[0].PictureName}/>
+                                    <Image cropMode={this.props.cropMode} src={this.props.data[0].PicturePath} alt={this.props.data[0].PictureName} />
                                 </a>
                             </div> : null
                     }
@@ -27,7 +28,7 @@ export default class ImageSlider extends Component {
                         this.props.data.map((item,index)=>(
                             <div className="mui-slider-item" key={"pic"+index}>
                                 <a href="javascript:;">
-                                    <img src={item.PicturePath} alt={item.PictureName}/>
+                                    <Image cropMode={this.props.cropMode} src={item.PicturePath} alt={item.PictureName}/>
                                 </a>
                             </div>
                         ))
@@ -36,7 +37,7 @@ export default class ImageSlider extends Component {
                         this.props.data && this.props.data.length ?
                             <div className="mui-slider-item mui-slider-item-duplicate">
                                 <a href="#">
-                                    <img src={this.props.data[this.props.data.length-1].PicturePath} alt={this.props.data[this.props.data.length-1].PictureName}/>
+                                    <Image cropMode={this.props.cropMode} src={this.props.data[this.props.data.length-1].PicturePath} alt={this.props.data[this.props.data.length-1].PictureName}/>
                                 </a>
                             </div> : null
                     }

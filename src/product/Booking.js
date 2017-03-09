@@ -5,9 +5,10 @@
 import React,{
     Component
 } from 'react';
-import {Page,  Model, Store, Validator, Toast} from '../common/lv';
+import {Page,  Model, Store, Validator, Toast, Mkt, DateUtil,Image} from '../common/lv';
 import {Link} from 'react-router';
 var priceCalendarData = new Store('KEY_PRICE_CALENDAR');
+var secureCodeStore = new Store('SECURE_CODE')
 import '../css/product.css';
 export default class Booking extends Page {
     headerview = {
@@ -28,7 +29,7 @@ export default class Booking extends Page {
 
     }
     validate(){
-        return Validator.isMobile(this.state.mobile) && Validator.isNotEmpty(this.state.contact) && priceCalendarData;
+        return this.state && Validator.isMobile(this.state.mobile) && Validator.isNotEmpty(this.state.contact) && priceCalendarData;
     }
 
     submit(){
@@ -44,13 +45,15 @@ export default class Booking extends Page {
                     mobile: this.state.mobile
                 },
                 orderInfo: {
+                    ownerID: Mkt.getItem('owner'),
+                    secureCode: secureCodeStore.getItem('secureCode'),
                     productID: this.props.location.state.data.LineID,
                     amount: childPrice * Number(this.state.childQuantity) + adultPrice* Number(this.state.adultQuantity),
                     childPrice: childPrice,
                     adultPrice: adultPrice,
                     childCount: this.state.childQuantity,
                     adultCount: this.state.adultQuantity,
-                    travelStartDate: Object.keys(priceCalendarData.getItem('selectedDay'))[0],
+                    travelStartDate: Object.keys(priceCalendarData.getItem('selectedDay')||[])[0] || DateUtil.tomorrow(),
                 },
                 requestAuth: {
                     token: "ctripuser"
@@ -58,18 +61,24 @@ export default class Booking extends Page {
             }).then((rs)=>{
                 var info = rs.Data.Infos && rs.Data.Infos;
                 this.hideLoading();
-                this.forward({
-                    pathname: '/order/'+info.vendorOrderId,
-                    state: {
-                        refer: 'booking'
-                    }
-                });
+                if(info.vendorOrderId){
+                    this.forward({
+                        pathname: '/order/'+info.vendorOrderId,
+                        state: {
+                            refer: 'booking'
+                        }
+                    });
+                }else{
+                    Toast.show('下单失败,请重试!')
+                }
+
             })
         }else{
             Toast.show('请填写正确的联系人和联系电话')
         }
     }
     onInput(fieldName, e){
+        if(!this.state) this.state = {}
         this.state[fieldName] = e.target.value;
     }
     render(){
@@ -87,7 +96,7 @@ export default class Booking extends Page {
                     <li className="mui-table-view-cell mui-media">
                         <div>
                             {
-                                detailData.LinePicList[0] ? <img className="mui-media-object mui-pull-left" src={detailData.LinePicList[0].PicturePath}/> : null
+                                detailData.LinePicList[0] ? <Image className="mui-media-object mui-pull-left" src={detailData.LinePicList[0].PicturePath} cropMode="100_100"/> : null
                             }
                             <div className="mui-media-body">
                                 {detailData.LineName}
