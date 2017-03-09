@@ -35,7 +35,7 @@ export default class Login extends Page {
         if(this.validate()){
             UserHelper.login({
                 mobile: this.state.mobile
-            })
+            });
             this.forward("/order/list");
         }else{
             Toast.show('手机号无效, 请重新输入');

@@ -24,11 +24,10 @@ export default class UserHelper {
     }
     static isLogin(){
         var user = userStore.getItem();
-
-        return user && user.data.auth;
+        return user && user.auth;
     }
     static getUser(){
         var user = userStore.getItem();
-        return user && user.data;
+        return user || {};
     }
 }
