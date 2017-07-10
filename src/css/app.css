@@ -5,7 +5,6 @@
  * BLACK: #333
  * BACKGROUND: #797979
  */
-
 body,.mui-table-view-divider{background: #ECF0F1;font-size:15px;color:#555;font-weight:normal}
 .navbar{background-color:#1DA179; color:white}
 .navbar .mui-title{color:white;font-weight:normal}
@@ -92,3 +91,11 @@ body,.mui-table-view-divider{background: #ECF0F1;font-size:15px;color:#555;font-
 .mui-bar-tab .mui-tab-item.mui-active{color:#1DA179}
 
 .mui-bar-tab .mui-tab-item .mui-icon{font-size: 20px;}
+
+
+/**shortcup tip**/
+.shortcut-tip{width:200px;}
+.shortcut-tip.bottom{ left: 50%; margin-left: -100px;}
+.shortcut-tip.bottom{ bottom:13px }
+.shortcut-tip.bottom .mui-popover-arrow{left:87px;}
+.tip-message-container{padding:10px; text-align: center}

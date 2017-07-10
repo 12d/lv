@@ -6,9 +6,10 @@ import React,{
     Component
 } from 'react';
 import {Link } from 'react-router'
-import {Page,ImageSlider,Model,Toast,NormalError,Bridge,Image} from '../common/lv';
+import {Page,ImageSlider,Model,Toast,NormalError,Bridge,Image,ShortcutTip,Platform} from '../common/lv';
 import '../css/shopdetail.css';
 import ProductItem from '../product/ProductItem';
+import Storage from '../Storage';
 /**
  * WeiStoreID = model.WeiStoreID;
  Title = model.Title;
@@ -17,9 +18,10 @@ import ProductItem from '../product/ProductItem';
  BannerUrl = model.BannerUrl;
  Contact = model.Contact;
  */
-export default class Index extends Page {
+export default class ShopDetail extends Page {
     headerview = {
-        title: '微店首页'
+        title: '微店首页',
+        left: null
     }
     constructor(){
 
@@ -28,7 +30,8 @@ export default class Index extends Page {
 
     componentWillMount(){
         this.state = {
-            data: this.getInitialData()
+            data: this.getInitialData(),
+            visited: Storage.shortcutTip.getItem('visited')
         }
         // debugger
         let shopID = this.props.params.id;
@@ -79,21 +82,23 @@ export default class Index extends Page {
         })
     }
     getStats(shopID){
-        Index.prefetch({
+        ShopDetail.prefetch({
             id: shopID
         }).then((rs)=>{
             this.setState({
                 data: rs
             });
+            let shopTitle = rs.Data.Infos.Title+"微门店店铺首页";
             this.wechatReady(()=> {
                 this.wechat.share({
                     title: this.getParams('sharetitle') || '我在美途旅旅发现了一家很赞的旅行社微门店 - '+rs.Data.Infos.Title, // 分享标题
-                    desc: rs.Data.Infos.Title+"微门店店铺首页", // 分享描述
+                    desc: shopTitle, // 分享描述
                     link: location.href, // 分享链接
                     imgUrl: rs.Data.Infos.LogoUrl, // 分享图标
                 });
                 this.wechat.on('all', this.sharedHandler.bind(this))
             });
+            this.setTitle(shopTitle);
         }).catch(()=>{
             Toast.show('加载失败,请刷新重试')
         })
@@ -110,17 +115,17 @@ export default class Index extends Page {
         var data = this.state.data.Data,
             stats = data && data.Infos || {};
 
+        console.log("Storage.shortcutTip.getItem('visited')",Storage.shortcutTip.getItem('visited'))
         return this.create(
             <div>
                 <div className="mui-scroll mui-content" >
-                    <ImageSlider style={{height:120}} data={[{"pictureID":0,"PictureName":"","PicturePath":stats.BannerUrl}]} cropMode="375_120"/>
-
                     <div className="mui-table-view page-section shop-info">
                         <Image className="mui-media-object mui-pull-left list-img shop-logo" src={stats.LogoUrl||"http://www.meitu.io//static/images/noimg.png"} cropMode="100_100"/>
                         <h1 className="product-name shop-name">{stats.Title}<b className="shop-verified">V</b></h1><p className="shop-data"><span className="prices"><span className="stars">112 人收藏</span></span><span className="">近期收客数 {stats.OrderPersonCount}</span></p>
                         <p className="shop-desc">{stats.Description}
                         </p>
                     </div>
+                    <ImageSlider style={{height:120}} data={[{"pictureID":0,"PictureName":"","PicturePath":stats.BannerUrl}]} cropMode="375_120"/>
                     {
                         this.state.hotlines&&this.state.hotlines.length ?
                             <div className="title hotline-title">
@@ -166,6 +171,10 @@ export default class Index extends Page {
                             <span className="mui-tab-label">我的订单</span>
                         </div>
                     </nav>
+                    {
+                        (Platform.OS=='ios' && Platform.vendor=='safari' && !this.state.visited) ? <ShortcutTip message="点击此按钮, 将店铺收藏到iPhone桌面" visible={true}/>  :  null
+                    }
+
             </div>
         )
     }

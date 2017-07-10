@@ -23,7 +23,7 @@ module.exports = {
         filename:  "[name].[chunkhash:8].entry.js",
         chunkFilename: "[name].[chunkhash:8].js",
 
-        publicPath: 'http://s1.lvlv.io/h5/'
+        publicPath: '/'
     },
     externals: {
         wx: 'jWeixin'

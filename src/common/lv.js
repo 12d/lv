@@ -59,5 +59,11 @@ module.exports = {
     },
     get Image(){
         return require('./Image').default
+    },
+    get ShortcutTip(){
+        return require('./ShortcutTip').default
+    },
+    get Platform(){
+        return require('./Platform').default
     }
 }

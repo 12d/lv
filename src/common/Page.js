@@ -76,15 +76,25 @@ class Page extends Component {
     // getInitialState(){
     //     return window.__INITIAL_STATE__;
     // }
-    loadCSS(styles){
+    loadCSS(styles) {
         this._stylesheets = styles;
+    }
+    setHeader(headerOptions){
+        this.header.update(headerOptions)
+    }
+    setTitle(title){
+        this.setHeader({
+            title
+        })
     }
     create(content,stylesheets) {
         stylesheets =  stylesheets || this._stylesheets;
 
         return (
             <div className="mui-page app-page-container">
-                <HeaderView {...this.headerview}/>
+                <HeaderView {...this.headerview} ref={(el)=>{
+                    this.header = el;
+                }}/>
                 {
                     stylesheets ? stylesheets.map((href)=>(<link href={href} rel="stylesheet"/>)) : null
 
@@ -121,7 +131,6 @@ class Page extends Component {
     }
 
     showLoading() {
-        console.log('showLoading')
         this.setState({
             isLoading: true
         })

@@ -4,6 +4,7 @@ export default {
         appSecret: ''
     },
     // baseModelUrl: 'http://meitu.s1.natapp.cc/',
-    baseModelUrl: 'http://192.168.0.5/',
+    // baseModelUrl: 'http://192.168.0.5/',
+    baseModelUrl: 'http://www.meitu.io/',
     logServer: '/sharedline/AddWXShareLog'
 }

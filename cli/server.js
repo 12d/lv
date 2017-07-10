@@ -6,13 +6,13 @@ new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
     hot: true,
     devServer: {
-        host: '192.168.0.11'
+        host: 'localhost'
     },
     historyApiFallback: true
-}).listen(8080, '192.168.0.11', function (err, result) {
+}).listen(8080, 'localhost', function (err, result) {
     if (err) {
         return console.log(err);
     }
 
-    console.log('Listening at http://192.168.0.11:8080/');
+    console.log('Listening at http://localhost:8080/');
 });

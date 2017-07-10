@@ -64,7 +64,9 @@ function loadShop(nextState, callback){
     },'shopdetail')
 }
 export default (
-    <App>
+    <App appIcons={{
+        '57x57': 'http://www.meitu.io//static/images/noimg.png?x-oss-process=style/100_100'
+    }}>
             <Router history={browserHistory}>
                 <Route path='/login' getComponent={loadLogin}/>
                 <Route path='/order' getComponent={loadOrderList}/>

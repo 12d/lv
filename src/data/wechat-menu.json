@@ -1,0 +1,30 @@
+{
+  "button":[
+    {
+      "name":"智能导游",
+      "sub_button":[
+        {
+          "type":"view",
+          "name":"我的同伴",
+          "url":"http://www.lvlv.io:8000/views/members.html"
+        },
+        {
+          "type":"view",
+          "name":"行程导航",
+          "url":"http://mp.weixin.qq.com/s?__biz=MzIxMDY0MjE0MA==&mid=2247483653&idx=1&sn=3a5d5297c180bd4792fb52efd41efddd&chksm=976034b6a017bda06d8d6ea6a4169c6b85811214e35b78114bae86913e111608769d7f921bed&scene=18#wechat_redirect"
+        }
+      ]
+
+    },
+    {
+      "name":"我的旅旅",
+      "sub_button":[
+        {
+          "type":"view",
+          "name":"旅行订单",
+          "url":"http://m.meitu.io/order/list"
+        }
+      ]
+    }
+  ]
+}
