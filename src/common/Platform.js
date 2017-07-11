@@ -2,7 +2,8 @@
  * @author xuweichen@meitu.io
  * @date 2017/7/10
  */
-var ua = navigator.userAgent;
+var isServerSide = typeof navigator=='undefined';
+var ua = isServerSide ?  '' : navigator.userAgent ;
 
 export default {
     get OS(){
@@ -15,9 +16,8 @@ export default {
         return platform;
     },
     get vendor(){
-        var ua = window.navigator.userAgent,
-            vendor = 'unknown';
-
+        var vendor = 'unknown';
+        if(isServerSide) return vendor;
         var isIE = window.ActiveXObject != undefined && ua.indexOf("MSIE") != -1;
         var isFirefox = ua.indexOf("Firefox") != -1;
         var isOpera = window.opr != undefined;
