@@ -25,15 +25,21 @@ class Page extends Component {
     static backward(){
         history.goBack();
     }
+    constructor(){
+        super();
+
+    }
+
     forward(pathname){
         history.push(pathname);
     }
     backward(){
         history.goBack();
     }
-    contextTypes:{
+    static contextTypes = {
         env: PropTypes.object,
-        urlQuery: PropTypes.object
+        urlQuery: PropTypes.object,
+        app: PropTypes.object
     }
 
     /**
@@ -80,12 +86,14 @@ class Page extends Component {
         this._stylesheets = styles;
     }
     setHeader(headerOptions){
-        this.header.update(headerOptions)
+        this.header.update(headerOptions);
+
+        this.context.app.runAt=='client' && (document.title=headerOptions.title);
     }
     setTitle(title){
         this.setHeader({
             title
-        })
+        });
     }
     create(content,stylesheets) {
         stylesheets =  stylesheets || this._stylesheets;
@@ -113,7 +121,7 @@ class Page extends Component {
         )
     }
     componentWillMount(){
-
+        this.app = this.context.app;
     }
     componentDidMount() {
 
