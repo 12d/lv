@@ -28,7 +28,7 @@ export default class ShortcutTip extends Component {
                 {
                     Platform.vendor == 'wechat' ?
                     <Tip arrowPosition='top' offset={{right:5,top:10}} arrowOffset={{right:5,left:'auto'}}>
-                        点击右上角菜单, 选择"收藏", 方便访问
+                        点击右上角菜单, 选择"收藏", 方便您下次访问
                     </Tip> : null
                 }
                 {
