@@ -36,6 +36,9 @@ class Page extends Component {
     backward(){
         history.goBack();
     }
+    replace(pathname){
+        history.replace(pathname);
+    }
     static contextTypes = {
         env: PropTypes.object,
         urlQuery: PropTypes.object,

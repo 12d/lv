@@ -1,10 +1,10 @@
-.login-logo {width:170px;height:170px;overflow: hidden;display: inline;margin: 30px;}
+.login-logo {width:170px;height:170px;overflow: hidden;display: inline;margin: 10px;}
 .login-row{padding: 10px 20px;width: 100%;position: relative;min-height: 64px;text-align: left;background: #1DA179;z-index:2;}
 .login-form-container .text-input{border-radius: 2px;border:none;background-color: #D1ECE4;padding: 10px; width: 100%;height:55px;line-height:30px;}
 .login-btn {border-radius: 2px;border:none;vertical-align:middle;background-color: #e7f0c0; text-align:center; color:#1DA179;font-weight: bold}
 .get-verify-btn {padding:8px 10px;position: absolute;right: 20px;top:15px;color:#1DA179;border:none;}
 .verify-text-input{position:absolute;left:20px;right:130px;width: auto;}
-.login-form-container{position: absolute;left:0;top:0;bottom: 0;right: 0;background: #1DA179;z-index: 99;text-align: center;padding-top: 40px;}
+.login-form-container{position: absolute;left:0;top:44px;bottom: 0;right: 0;background: #1DA179;z-index: 99;text-align: center;padding-top: 40px;}
 .verify-text{background:transparent;border:none;padding:0;vertical-align:top;line-height: 24px;}
 .contact-us{color:#c6e2c6!important;position:fixed;bottom:15px; text-align:center;width:100%;}
 .help-phone{color:#c6e2c6!important;}

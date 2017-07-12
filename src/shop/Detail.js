@@ -115,7 +115,6 @@ export default class ShopDetail extends Page {
         var data = this.state.data.Data,
             stats = data && data.Infos || {};
 
-        console.log("Storage.shortcutTip.getItem('visited')",Storage.shortcutTip.getItem('visited'))
         return this.create(
             <div>
                 <div className="mui-scroll mui-content" >
@@ -172,7 +171,9 @@ export default class ShopDetail extends Page {
                         </div>
                     </nav>
                     {
-                        (Platform.OS=='ios' && Platform.vendor=='safari' && !this.state.visited) ? <ShortcutTip message="点击此按钮, 将店铺收藏到iPhone桌面" visible={true}/>  :  null
+
+                        !Storage.shortcutTip.getItem('visited') && (Platform.vendor=='safari' || Platform.vendor=='chrome'  || Platform.vendor=='wechat') ?
+                            <ShortcutTip /> : null
                     }
 
             </div>

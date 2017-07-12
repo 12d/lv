@@ -65,7 +65,10 @@ function loadShop(nextState, callback){
 }
 export default (
     <App appIcons={{
-        '57x57': 'http://www.meitu.io//static/images/noimg.png?x-oss-process=style/100_100'
+        '57x57': 'http://s1.lvlv.io/files/greenlogo57@2x.png',
+        '72x72': 'http://s1.lvlv.io/files/greenlogo57@2x.png',
+        '114x114': 'http://s1.lvlv.io/files/greenlogo57@2x.png',
+        '144x144': 'http://s1.lvlv.io/files/greenlogo57@2x.png'
     }}>
             <Router history={browserHistory}>
                 <Route path='/login' getComponent={loadLogin}/>

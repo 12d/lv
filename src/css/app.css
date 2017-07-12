@@ -6,7 +6,7 @@
  * BACKGROUND: #797979
  */
 body,.mui-table-view-divider{background: #ECF0F1;font-size:15px;color:#555;font-weight:normal}
-.navbar{background-color:#1DA179; color:white}
+.navbar{background-color:#1DA179; color:white;}
 .navbar .mui-title{color:white;font-weight:normal}
 .navbar .mui-icon-left-nav{color:white}
 .navbar .mui-btn-link{color:white;font-size:14px;}
@@ -99,3 +99,6 @@ body,.mui-table-view-divider{background: #ECF0F1;font-size:15px;color:#555;font-
 .shortcut-tip.bottom{ bottom:13px }
 .shortcut-tip.bottom .mui-popover-arrow{left:87px;}
 .tip-message-container{padding:10px; text-align: center}
+
+/**mask layer*/
+.overlayer{position:fixed;left:0;top:0;bottom:0;right:0;background:rgba(0,0,0,0.2);z-index:999}

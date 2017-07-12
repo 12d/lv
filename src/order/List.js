@@ -28,7 +28,7 @@ export default class Index extends Page {
         this.showLoading();
 
         if(!UserHelper.isLogin()){
-            this.forward('/login');
+            this.replace('/login');
             return;
         }
 
