@@ -20,7 +20,7 @@ module.exports = {
         path: path.join(__dirname, 'dist'),
         filename:  "[name].entry.js",
         chunkFilename: "[name].[chunkhash:8].js",
-        publicPath: '/'
+        publicPath: 'http://s3.lvlv.io/h5/'
     },
     plugins: [
         new webpack.DefinePlugin({

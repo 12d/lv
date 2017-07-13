@@ -20,6 +20,8 @@ var RouterContext = ReactRouter.RouterContext;
 var match = ReactRouter.match;
 var document = jsdom.jsdom(htmlTemplate);
 var app = express();
+var compress = require('compression');
+
 var head = document.querySelector('head');
 var initalHeadHTML = head.innerHTML;
 var container  = document.querySelector("#app-container");
@@ -50,6 +52,10 @@ var MIME_TYPE = {
     "xml": "text/xml"
 };
 
+//gzip开启压缩
+app.use(compress());
+
+
 app.use(function(req, res){
     match({ routes:global.getSEORoutes(),  location: req.url }, (error, redirectLocation, renderProps) => {
         if (error) {
@@ -61,6 +67,7 @@ app.use(function(req, res){
             // debugger
             // console.log(renderProps.components[1].prefetch())
             var coms = renderProps.components.filter(com=>(com && com.prefetch));
+            console.log(coms[0].prefetch)
             var promises = coms.map(com=>com.prefetch(renderProps.params,renderProps));
             Promise.all(promises).then(values=>{
                 // var attrs = Object.assign({data: values}, renderProps);
@@ -118,5 +125,6 @@ app.use(function(req, res){
         }
     })
 })
+// app.use(express.static('dist'));
 app.listen(5678);
 console.log('server starting at 5678')
