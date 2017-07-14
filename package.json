@@ -6,9 +6,10 @@
   "scripts": {
     "packseo": "NODE_ENV=production node ./cli/release-seo.js;node ./cli/release.js",
     "pack": "NODE_ENV=production node ./cli/release.js",
-    "seo": "NODE_ENV=production node ./cli/seo.js",
+    "seo": "NODE_ENV=production forever start ./cli/seo-cluster.js",
     "start": "node ./cli/server.js",
-    "stop": "killall -9 node",
+    "stop": "forever stop ./cli/seo-cluster.js",
+    "restart": "forever restart ./cli/seo-cluster.js",
     "release": "NODE_ENV=production node ./cli/release.js",
     "lint": "eslint src"
   },
