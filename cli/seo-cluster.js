@@ -12,26 +12,22 @@ var path = require('path');
 var React = require('react');
 var ReactRouter = require('react-router');
 var ReactDOM = require('react-dom/server');
-var seo = require('../dist/seo.entry.js');
-var jsdom = require('jsdom');
 var htmlTemplate = fs.readFileSync(path.resolve(__dirname,'../dist','index.html'),'utf8');
-var DefaultRoute = ReactRouter.ReactRouter;
-var NotFoundRoute = ReactRouter.NotFoundRoute;
-var Route = ReactRouter.Route;
-var Router = ReactRouter.Router;
 var RouterContext = ReactRouter.RouterContext;
 var match = ReactRouter.match;
-var document = jsdom.jsdom(htmlTemplate);
-var app = express();
 var compress = require('compression');
-
-var head = document.querySelector('head');
-var initalHeadHTML = head.innerHTML;
-var container  = document.querySelector("#app-container");
-function renderFullPage(html, initialState) {
-    container.innerHTML=html;
-    head.innerHTML=initalHeadHTML+'<script>window.__INITIAL_STATE__ = '+JSON.stringify(initialState)+';window.__RENDER_AT="server"</script>';
-    return document.documentElement.outerHTML;
+// function renderFullPage2(html, initialState,startTime) {
+//     container.innerHTML=html; //bottleneck 50ms
+//     logPerf('insert html to container', startTime, +new Date);
+//     head.innerHTML=initalHeadHTML+'<script>window.__INITIAL_STATE__ = '+JSON.stringify(initialState)+';window.__RENDER_AT="server"</script>';
+//     logPerf('insert script to head', startTime, +new Date);
+//     return document.documentElement.outerHTML;
+// }
+function renderFullPage(html, initialState, startTime){
+   return htmlTemplate.replace(/\{VIEW_STACK\}/ig, html+'<script>window.__INITIAL_STATE__ = '+JSON.stringify(initialState)+';window.__RENDER_AT="server"</script>');
+}
+function logPerf(label, start, end){
+    // console.log(`[performance]****`,label,end-start);
 }
 //添加MIME类型
 var MIME_TYPE = {
@@ -76,24 +72,34 @@ if (cluster.isMaster) {
     app.use(compress());
     app.use(function(req, res){
         match({ routes:global.getSEORoutes(),  location: req.url }, (error, redirectLocation, renderProps) => {
+            let startTime = + new Date();
             if (error) {
                 res.status(500).send(error.message)
             } else if (redirectLocation) {
                 res.redirect(302, redirectLocation.pathname + redirectLocation.search)
             } else if (renderProps) {
-                console.log('renderProps.params',JSON.stringify(renderProps.params));
+                // console.log('renderProps.params',JSON.stringify(renderProps.params));
                 // debugger
                 // console.log(renderProps.components[1].prefetch())
                 var coms = renderProps.components.filter(com=>(com && com.prefetch));
-                console.log(coms[0].prefetch)
+                // console.log(coms[0].prefetch)
                 var promises = coms.map(com=>com.prefetch(renderProps.params,renderProps));
                 Promise.all(promises).then(values=>{
                     // var attrs = Object.assign({data: values}, renderProps);
                     renderProps.location.state = values[0];
-                    console.log(ReactDOM.renderToString(React.createElement(RouterContext,renderProps)))
-                    res.status(200).send(renderFullPage(ReactDOM.renderToString(React.createElement(RouterContext,renderProps)), values[0]||{}));
+                    // console.log(ReactDOM.renderToString(React.createElement(RouterContext,renderProps)))
+                    logPerf('data loaded', startTime, +new Date);
+                    let renderElement = React.createElement(RouterContext,renderProps);
+                    logPerf('data created react element', startTime, +new Date);
+                    let renderParticalHTML = ReactDOM.renderToString(renderElement);//bottleneck 40ms
+                    logPerf('render to partical html', startTime, +new Date);
+                    let renderString = renderFullPage(renderParticalHTML, values[0]||{}, startTime);
+                    logPerf('data rendered to string', startTime, +new Date);
+                    res.status(200).send(renderString);
+                    logPerf('send back to client', startTime, +new Date);
+                    // console.log('-------------------------------------')
                 }).catch(error=>res.status(500).send(error.message));
-                console.log('waiting for response')
+                // console.log('waiting for response')
 
             } else {
                 var request = req;
