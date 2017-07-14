@@ -12,9 +12,11 @@ var path = require('path');
 var React = require('react');
 var ReactRouter = require('react-router');
 var ReactDOM = require('react-dom/server');
+var seo = require('../dist/seo.entry.js');
 var htmlTemplate = fs.readFileSync(path.resolve(__dirname,'../dist','index.html'),'utf8');
 var RouterContext = ReactRouter.RouterContext;
 var match = ReactRouter.match;
+
 var compress = require('compression');
 // function renderFullPage2(html, initialState,startTime) {
 //     container.innerHTML=html; //bottleneck 50ms
@@ -24,7 +26,7 @@ var compress = require('compression');
 //     return document.documentElement.outerHTML;
 // }
 function renderFullPage(html, initialState, startTime){
-   return htmlTemplate.replace(/\{VIEW_STACK\}/ig, html+'<script>window.__INITIAL_STATE__ = '+JSON.stringify(initialState)+';window.__RENDER_AT="server"</script>');
+   return htmlTemplate.replace(/\{VIEW_STACK\}/ig, html+'<script>window.__INITIAL_STATE__ = '+JSON.stringify(initialState)+';window.__RENDER_AT="server"</script>')
 }
 function logPerf(label, start, end){
     // console.log(`[performance]****`,label,end-start);
@@ -99,7 +101,7 @@ if (cluster.isMaster) {
                     logPerf('send back to client', startTime, +new Date);
                     // console.log('-------------------------------------')
                 }).catch(error=>res.status(500).send(error.message));
-                // console.log('waiting for response')
+                console.log('waiting for response')
 
             } else {
                 var request = req;
