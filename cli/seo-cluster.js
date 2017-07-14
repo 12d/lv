@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @author xuweichen@meitu.io
  * @date 2017/7/13
