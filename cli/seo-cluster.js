@@ -30,7 +30,7 @@ function renderFullPage(html, initialState, startTime){
    return htmlTemplate.replace(/\{VIEW_STACK\}/ig, html+'<script>window.__INITIAL_STATE__ = '+JSON.stringify(initialState)+';window.__RENDER_AT="server"</script>')
 }
 function logPerf(label, start, end){
-    // console.log(`[performance]****`,label,end-start);
+    console.log(`[performance]****`,label,end-start);
 }
 //添加MIME类型
 var MIME_TYPE = {
@@ -94,7 +94,7 @@ if (cluster.isMaster) {
                     logPerf('data loaded', startTime, +new Date);
                     let renderElement = React.createElement(RouterContext,renderProps);
                     logPerf('data created react element', startTime, +new Date);
-                    let renderParticalHTML = ReactDOM.renderToString(renderElement);//bottleneck 40ms
+                    let renderParticalHTML = ReactDOM.renderToStaticMarkup(renderElement);//bottleneck 50ms
                     logPerf('render to partical html', startTime, +new Date);
                     let renderString = renderFullPage(renderParticalHTML, values[0]||{}, startTime);
                     logPerf('data rendered to string', startTime, +new Date);
