@@ -81,9 +81,9 @@ if (cluster.isMaster) {
             } else if (redirectLocation) {
                 res.redirect(302, redirectLocation.pathname + redirectLocation.search)
             } else if (renderProps) {
-                // console.log('renderProps.params',JSON.stringify(renderProps.params));
-                // debugger
-                // console.log(renderProps.components[1].prefetch())
+
+                res.status(200).write(htmlTemplate)
+
                 var coms = renderProps.components.filter(com=>(com && com.prefetch));
                 // console.log(coms[0].prefetch)
                 var promises = coms.map(com=>com.prefetch(renderProps.params,renderProps));
@@ -98,7 +98,7 @@ if (cluster.isMaster) {
                     logPerf('render to partical html', startTime, +new Date);
                     let renderString = renderFullPage(renderParticalHTML, values[0]||{}, startTime);
                     logPerf('data rendered to string', startTime, +new Date);
-                    res.status(200).send(renderString);
+                    res.end(renderString);
                     logPerf('send back to client', startTime, +new Date);
                     // console.log('-------------------------------------')
                 }).catch(error=>res.status(500).send(error.message));
