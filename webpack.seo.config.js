@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var TransferWebpackPlugin = require('transfer-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin"); //将css生成单独文件
 // var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     entry: {
         // seo: './src/bootstrap-seo',
@@ -30,12 +31,14 @@ module.exports = {
         }),
         // 压缩打包的文件
 
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {
-        //         //supresses warnings, usually from module minification
-        //         warnings: false
-        //     }
-        // }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                drop_debugger: true,
+                drop_console: true,
+                //supresses warnings, usually from module minification
+                warnings: false
+            }
+        }),
 
 
         new webpack.optimize.CommonsChunkPlugin({name: "libs", filename: "[name].[chunkhash:8].js", chunks: ['libs']}),
