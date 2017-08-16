@@ -17,7 +17,10 @@ var seo = require('../dist/seo.entry.js');
 var htmlTemplate = fs.readFileSync(path.resolve(__dirname,'../dist','index.html'),'utf8');
 var RouterContext = ReactRouter.RouterContext;
 var match = ReactRouter.match;
-
+var htmlPrefixIndex = htmlTemplate.indexOf('<body');
+console.log(htmlPrefixIndex,'htmlPrefixIndex');
+var htmlPrefix = htmlTemplate.substring(0,htmlPrefixIndex);
+htmlTemplate = htmlTemplate.substring(htmlPrefixIndex+5);
 var compress = require('compression');
 // function renderFullPage2(html, initialState,startTime) {
 //     container.innerHTML=html; //bottleneck 50ms
@@ -82,7 +85,7 @@ if (cluster.isMaster) {
                 res.redirect(302, redirectLocation.pathname + redirectLocation.search)
             } else if (renderProps) {
 
-                res.status(200).write(htmlTemplate)
+                res.status(200).write(htmlPrefix)
 
                 var coms = renderProps.components.filter(com=>(com && com.prefetch));
                 // console.log(coms[0].prefetch)
