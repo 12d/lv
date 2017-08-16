@@ -20,7 +20,7 @@ var match = ReactRouter.match;
 var htmlPrefixIndex = htmlTemplate.indexOf('<body');
 console.log(htmlPrefixIndex,'htmlPrefixIndex');
 var htmlPrefix = htmlTemplate.substring(0,htmlPrefixIndex);
-htmlTemplate = htmlTemplate.substring(htmlPrefixIndex+5);
+htmlTemplate = htmlTemplate.substring(htmlPrefixIndex);
 var compress = require('compression');
 // function renderFullPage2(html, initialState,startTime) {
 //     container.innerHTML=html; //bottleneck 50ms
@@ -77,6 +77,7 @@ if (cluster.isMaster) {
     //gzip开启压缩
     app.use(compress());
     app.use(function(req, res){
+
         match({ routes:global.getSEORoutes(),  location: req.url }, (error, redirectLocation, renderProps) => {
             let startTime = + new Date();
             if (error) {
@@ -84,9 +85,7 @@ if (cluster.isMaster) {
             } else if (redirectLocation) {
                 res.redirect(302, redirectLocation.pathname + redirectLocation.search)
             } else if (renderProps) {
-
                 res.status(200).write(htmlPrefix)
-
                 var coms = renderProps.components.filter(com=>(com && com.prefetch));
                 // console.log(coms[0].prefetch)
                 var promises = coms.map(com=>com.prefetch(renderProps.params,renderProps));
