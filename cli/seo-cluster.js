@@ -17,10 +17,10 @@ var seo = require('../dist/seo.entry.js');
 var htmlTemplate = fs.readFileSync(path.resolve(__dirname,'../dist','index.html'),'utf8');
 var RouterContext = ReactRouter.RouterContext;
 var match = ReactRouter.match;
-var htmlPrefixIndex = htmlTemplate.indexOf('<body');
+var htmlPrefixIndex = htmlTemplate.indexOf('<preload></preload>');
 console.log(htmlPrefixIndex,'htmlPrefixIndex');
 var htmlPrefix = htmlTemplate.substring(0,htmlPrefixIndex);
-htmlTemplate = htmlTemplate.substring(htmlPrefixIndex);
+htmlTemplate = htmlTemplate.substring(htmlPrefixIndex+19);
 var compress = require('compression');
 // function renderFullPage2(html, initialState,startTime) {
 //     container.innerHTML=html; //bottleneck 50ms

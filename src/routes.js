@@ -63,6 +63,11 @@ function loadShop(nextState, callback){
         callback(null, require('./shop/Detail').default);
     },'shopdetail')
 }
+function loadMarketing(nextState, callback){
+    require.ensure(['./shop/Marketing'], function(require){
+        callback(null, require('./shop/Marketing').default);
+    },'marketing')
+}
 export default (
     <App appIcons={{
         '57x57': 'http://s1.lvlv.io/files/greenlogo57@2x.png',
@@ -83,6 +88,7 @@ export default (
                 <Route path='/product/:id/pricecalendar' getComponent={loadPriceCalendar}/>
                 <Route path='/product/booking/:id' getComponent={loadBooking}/>
                 <Route path='/shop/:id' getComponent={loadShop}/>
+                <Route path='/mkt/:id' getComponent={loadMarketing}/>
             </Router>
     </App>
 )

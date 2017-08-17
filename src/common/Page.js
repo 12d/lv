@@ -103,9 +103,15 @@ class Page extends Component {
 
         return (
             <div className="mui-page app-page-container">
-                <HeaderView {...this.headerview} ref={(el)=>{
-                    this.header = el;
-                }}/>
+                {
+                    this.headerview
+                        ?
+                    <HeaderView {...this.headerview} ref={(el)=>{
+                        this.header = el;
+                    }}/>
+                        :
+                    null
+                }
                 {
                     stylesheets ? stylesheets.map((href)=>(<link href={href} rel="stylesheet"/>)) : null
 
