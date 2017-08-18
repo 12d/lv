@@ -30,7 +30,7 @@ module.exports = {
             }
         }),
         // 压缩打包的文件
-
+        /*
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 drop_debugger: true,
@@ -39,7 +39,7 @@ module.exports = {
                 warnings: false
             }
         }),
-
+    */
 
         new webpack.optimize.CommonsChunkPlugin({name: "libs", filename: "[name].[chunkhash:8].js", chunks: ['libs']}),
         new ExtractTextPlugin('css/[name].[contenthash:4].css',{allChunks: true, disable: false}),

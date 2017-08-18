@@ -5,6 +5,6 @@ export default {
     },
     // baseModelUrl: 'http://meitu.s1.natapp.cc/',
     // baseModelUrl: 'http://192.168.0.5/',
-    baseModelUrl: 'http://www.meitu.io/',
+    baseModelUrl: 'http://139.196.200.18:8010/',
     logServer: '/sharedline/AddWXShareLog'
 }
