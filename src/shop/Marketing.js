@@ -32,6 +32,7 @@ export default class Marketing extends Page {
                data: rs
             });
             let sharedData = rs.Data.Infos;
+            let shareTitle = sharedData.ShareTitle;
             this.wechatReady(()=> {
                 this.wechat.share({
                     title: sharedData.ShareTitle, // 分享标题
@@ -39,6 +40,7 @@ export default class Marketing extends Page {
                     link: location.href, // 分享链接
                     imgUrl: sharedData.PicUrl, // 分享图标
                 });
+                this.setTitle(shareTitle);
                 this.wechat.on('all', this.sharedHandler.bind(this))
             });
         })
