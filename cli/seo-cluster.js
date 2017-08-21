@@ -97,6 +97,7 @@ if (cluster.isMaster) {
                     let renderElement = React.createElement(RouterContext,renderProps);
                     logPerf('data created react element', startTime, +new Date);
                     let renderParticalHTML = ReactDOM.renderToStaticMarkup(renderElement);//bottleneck 50ms
+                    // let renderParticalHTML = ReactDOM.renderToString(renderElement);//bottleneck 50ms
                     logPerf('render to partical html', startTime, +new Date);
                     let renderString = renderFullPage(renderParticalHTML, values[0]||{}, startTime);
                     logPerf('data rendered to string', startTime, +new Date);
