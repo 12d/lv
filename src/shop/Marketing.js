@@ -40,7 +40,7 @@ export default class Marketing extends Page {
                     link: location.href, // 分享链接
                     imgUrl: sharedData.PicUrl, // 分享图标
                 });
-                this.setTitle(shareTitle);
+                document.title = shareTitle;
                 this.wechat.on('all', this.sharedHandler.bind(this))
             });
         })

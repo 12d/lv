@@ -81,6 +81,10 @@ export default class ShopDetail extends Page {
             pids: this.getParams('id').split(',')
         })
     }
+    goNews(){
+        this.showLoading();
+        this.forward('/mkt/list/'+this.props.params.id);
+    }
     getStats(shopID){
         ShopDetail.prefetch({
             id: shopID
@@ -88,7 +92,7 @@ export default class ShopDetail extends Page {
             this.setState({
                 data: rs
             });
-            let shopTitle = rs.Data.Infos.Title+"微门店店铺首页";
+            let shopTitle = rs.Data.Infos.Title+"微门店首页";
             this.wechatReady(()=> {
                 this.wechat.share({
                     title: this.getParams('sharetitle') || '我在美途旅旅发现了一家很赞的旅行社微门店 - '+rs.Data.Infos.Title, // 分享标题
@@ -154,13 +158,11 @@ export default class ShopDetail extends Page {
                             <span className="mui-icon mui-icon-list"></span>
                             <span className="mui-tab-label">所有线路</span>
                         </div>
-                        {
-                            /*
-                        <a className="mui-tab-item" href="#">
-                            <span className="mui-icon mui-icon-extra mui-icon-extra-heart"></span>
-                            <span className="mui-tab-label">收藏店铺</span>
-                        </a>*/
-                        }
+
+                        <div className="mui-tab-item">
+                            <span className="mui-icon mui-icon mui-icon-star" onClick={()=>this.goNews()}></span>
+                            <span className="mui-tab-label">微店头条</span>
+                        </div>
                         <div className="mui-tab-item" onClick={()=>Bridge.callPhone(stats.Contact)}>
                             <span className="mui-icon mui-icon-phone" style={{fontSize:27}}></span>
                             <span className="mui-tab-label">联系我们</span>
