@@ -26,7 +26,7 @@ module.exports = {
         publicPath: 'http://s3.lvlv.io/h5/'
     },
     externals: {
-        wx: 'jWeixin'-
+        wx: 'jWeixin'
     },
     plugins: [
         new webpack.DefinePlugin({
