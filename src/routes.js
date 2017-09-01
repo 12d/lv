@@ -69,7 +69,7 @@ function loadMarketing(nextState, callback){
     },'marketing')
 }
 function loadMarketingList(nextState, callback){
-    require.ensure(['./shop/MarketingLi'], function(require){
+    require.ensure(['./shop/MarketingList'], function(require){
         callback(null, require('./shop/MarketingList').default);
     },'mktlist')
 }
