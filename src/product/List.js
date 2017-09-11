@@ -25,7 +25,7 @@ export default class Index extends Page {
         if(list){
             paramsObj.travellineidlist= list.split(',')
         }else{
-            paramsObj.travelstoreid = props.location.query.shop
+            paramsObj.userid = props.location.query.shop
         }
         return Model.post('/sharedline/getlinelist',paramsObj,{
             useSecureCode: true
