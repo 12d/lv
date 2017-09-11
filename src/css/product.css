@@ -1,6 +1,6 @@
 .from-city{padding-right:5px;}
 .product-name{font-size:18px;line-height:26px;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp: 1;-webkit-box-orient: vertical;display:-webkit-box}
-.mkt-name{line-height:22px; -webkit-line-clamp: 3}
+.mkt-name{line-height:22px; -webkit-line-clamp: 3;white-space: normal;}
 .product-list-name{font-size:15px;color:#333}
 .product-spotlight{font-size:12px;-webkit-box-orient: vertical;display:-webkit-box;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp: 2;max-height:40px;word-break: break-all;line-height:16px;padding-top:7px;}
 .product-list-container{background:rgb(230, 230, 233);}

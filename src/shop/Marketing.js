@@ -5,13 +5,15 @@
 import React, {Component} from 'react';
 import {Page, Model,Toast} from '../common/lv';
 export default class Marketing extends Page {
-    headerview = null
+    headerview = {
+        title: ' '
+    }
     render(){
         let data = this.state.data;
         data = data && data.Data;
         data = data && data.Infos || {};
         return this.create(
-            <section style={{marginTop:-44}}>
+            <section>
                 <img src={data.PicUrl} style={{width:'100%'}}/>
                 <div dangerouslySetInnerHTML={{__html: data.Content}} style={{position:'relative',padding:10}}></div>
             </section>

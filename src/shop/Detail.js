@@ -60,7 +60,7 @@ export default class ShopDetail extends Page {
             pageindex:1,
             pagesize:5,
             sort:'2_1',
-            travelstoreid: this.props.params.id
+            userid: this.props.params.id
         },{useAuth:false}).then((rs)=>{
 
             this.setState({
@@ -124,7 +124,7 @@ export default class ShopDetail extends Page {
                 <div className="mui-scroll mui-content" >
                     <div className="mui-table-view page-section shop-info">
                         <Image className="mui-media-object mui-pull-left list-img shop-logo" src={stats.LogoUrl||"http://www.meitu.io//static/images/noimg.png"} cropMode="100_100"/>
-                        <h1 className="product-name shop-name">{stats.Title}<b className="shop-verified">V</b></h1><p className="shop-data"><span className="prices"><span className="stars">112 人收藏</span></span><span className="">近期收客数 {stats.OrderPersonCount}</span></p>
+                        <h1 className="product-name shop-name">{stats.Title}<b className="shop-verified">V</b></h1><p className="shop-data"></p>
                         <p className="shop-desc">{stats.Description}
                         </p>
                     </div>

@@ -13,15 +13,17 @@ import '../css/product.css';
 export default class Index extends Page {
     static prefetch(params, props){
 
-        var travelstoreid = props.params.id;
+        var userid = props.params.id;
+
+        params = params || {};
 
         var paramsObj = {
-            pageindex:1,
+            pageindex:params.pageindex || 1,
             pagesize:12,
-            travelstoreid
+            userid
         }
 
-        return Model.post('/sharedline/getlinelist',paramsObj,{})
+        return Model.post('/sharedline/getwdpostelist',paramsObj,{})
     }
     headerview = {
         title: '微店头条',
@@ -135,6 +137,7 @@ export default class Index extends Page {
     }
     render(){
         var data = this.state.data && this.state.data.Data&& this.state.data.Data.Infos;
+
         return this.create(
             data && data.List && data.List.length
                 ?
@@ -143,6 +146,7 @@ export default class Index extends Page {
                         <ul className="mui-table-view product-list-container">
                             {
                                 this.state.data.Data.Infos.List.map((itemData, index)=>{
+
                                     return (
                                         <ProductItem data={itemData} key={'pitem'+index}/>
                                     )

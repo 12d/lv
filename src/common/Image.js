@@ -8,6 +8,7 @@ export default class Image extends Component {
         super()
     }
     render(){
+        
         return <img {...this.props} src={this.props.src+(this.props.cropMode?"?x-oss-process=style/"+this.props.cropMode:'')}/>
     }
     static defaultProps = {

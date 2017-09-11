@@ -8,28 +8,32 @@ import '../css/product.css';
 export default class MktListItem extends Component {
     constructor(){
         super();
+
     }
     render(){
+
         var data = this.props.data,
-            imgSRC = data.LinePicList.length && data.LinePicList[0].PicturePath || DEFAULT_IMAGE;
+            imgSRC = data.FirstPicturesPath || DEFAULT_IMAGE;
 
         return (
+            <Link to={"/mkt/"+data.PostID}>
             <li className="mui-table-view-cell mui-media mui-card custom-list">
                 {
                     /*<span className="line-typename">{data.LineTypeName}</span>*/
                 }
-                <div onClick={()=>Page.forward("/mkt/"+data.LineID)} className="custom-list-content">
-                    <Image src={imgSRC} className="mui-media-object mui-pull-left list-img" cropMode="100_100"/>
-                    <div className="mui-media-body product-name product-list-name mkt-name">
-                        {data.LineName}
+                    <div className="custom-list-content">
+                        <Image src={imgSRC} className="mui-media-object mui-pull-left list-img" cropMode="100_100"/>
+                        <div className="mui-media-body product-name product-list-name mkt-name">
+                            {data.Title}
+                        </div>
+                        {
+                            /*<p className="product-spotlight">{data.RecommendReason}</p>*/
+                        }
                     </div>
-                    {
-                        /*<p className="product-spotlight">{data.RecommendReason}</p>*/
-                    }
-                </div>
-                <span className="order-price-wrap">2017-08-09 12:11:00</span>
-                <span className="order-total">已读&nbsp;{data.OrderPersonCount||0}</span>
+                    <span className="order-price-wrap">{data.DataChange_LastTime}</span>
+                    <span className="order-total">已读&nbsp;{data.ViewCount||0}</span>
             </li>
+            </Link>
         )
     }
 }
